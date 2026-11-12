@@ -1963,3 +1963,18 @@ p {
     display: none;
   }
 }
+
+/* === Mobile-First iPhone & Touch Polish === */
+@media (max-width: 980px) {
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+  .mobile-action-bar {
+    padding-bottom: calc(0.45rem + env(safe-area-inset-bottom, 0px));
+  }
+  .nav-toggle {
+    min-height: 40px;
+  }
+}
