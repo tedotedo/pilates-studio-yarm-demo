@@ -1,6 +1,8 @@
 /* ==========================================================================
-   The Pilates Studio Yarm — Calm Granary Movement Studio Concept Stylesheet
-   Self-hosted Newsreader & Outfit · Mobile-first · WCAG AA High Contrast
+   The Pilates Studio Yarm — Kinfolk / Cereal Architectural Sanctuary Magazine
+   Sunlit Chalk Linen (#FAF8F4) · Warm Travertine (#EFECE4) · Deep Eucalyptus (#1E352F)
+   Terracotta Clay (#9E4A33) · Hairline 1px Architectural Rules · WCAG AA+ Contrast
+   Self-hosted Newsreader & Outfit WOFF2 only · Zero external requests
    ========================================================================== */
 
 @font-face {
@@ -28,37 +30,32 @@
 }
 
 :root {
-  --linen: #F7F5F0;
-  --stone: #EDE8DE;
-  --stone-deep: #E2DBD0;
-  --card: #FFFFFF;
-  --eucalyptus: #23423B;
-  --eucalyptus-mid: #355850;
-  --eucalyptus-border: #4A7269;
-  --terracotta: #A65338;
-  --terracotta-hover: #8B422B;
-  --terracotta-text: #8A3F27;
-  --charcoal: #1E2523;
-  --muted: #42504C;
-  --border: #D6CFC2;
-  --sage-tint: #E7EFEA;
-  --sage-ink: #1D3A33;
+  --linen: #FAF8F4;
+  --stone: #EFECE4;
+  --stone-deep: #E2DDD1;
+  --vellum: #FDFCF9;
+  --eucalyptus: #1E352F;
+  --eucalyptus-mid: #29463E;
+  --eucalyptus-rule: #42665C;
+  --terracotta: #9E4A33;
+  --terracotta-hover: #813925;
+  --terracotta-ink: #843924;
+  --charcoal: #19211E;
+  --muted: #3D4C47;
+  --hairline: #CFC8BA;
+  --hairline-strong: #B5AD9D;
+  --sage-wash: #E6EFEA;
+  --sage-ink: #18322B;
 
-  --ph-bg: #F7EAE4;
-  --ph-border: #CFA292;
-  --ph-text: #6E331F;
+  --ph-bg: #F6E9E3;
+  --ph-border: #C99A88;
+  --ph-text: #682B19;
 
   --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
-  --radius-pill: 999px;
-
-  --shadow-soft: 0 12px 32px rgba(30, 37, 35, 0.06);
-  --shadow-card: 0 6px 20px rgba(30, 37, 35, 0.05);
-  --container-max: 1200px;
+  --radius-arch: 2px;
+  --container-max: 1260px;
 }
 
 *,
@@ -98,7 +95,7 @@ body {
   padding-bottom: 4.75rem;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 980px) {
   body {
     padding-bottom: 0;
   }
@@ -113,23 +110,23 @@ svg {
 
 a {
   color: var(--eucalyptus);
-  text-underline-offset: 0.2em;
+  text-underline-offset: 0.22em;
   transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
 }
 
 a:hover {
-  color: var(--terracotta-text);
+  color: var(--terracotta-ink);
 }
 
 :focus-visible {
-  outline: 3px solid var(--terracotta);
+  outline: 2.5px solid var(--terracotta);
   outline-offset: 3px;
 }
 
 .dark-surface :focus-visible,
 .concept-banner :focus-visible,
 .mobile-action-bar :focus-visible {
-  outline: 3px solid var(--linen);
+  outline: 2.5px solid var(--linen);
   outline-offset: 3px;
 }
 
@@ -138,11 +135,11 @@ a:hover {
   position: absolute;
   left: 0.75rem;
   top: -100px;
-  z-index: 2000;
+  z-index: 2200;
   background-color: var(--eucalyptus);
   color: #FFFFFF;
   padding: 0.65rem 1.1rem;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-arch);
   font-weight: 600;
   text-decoration: none;
 }
@@ -151,15 +148,15 @@ a:hover {
   top: 0.75rem;
 }
 
-/* Persistent Slim Top Concept Banner */
+/* 1. Persistent Slim Top Concept Banner */
 .concept-banner {
   background-color: var(--eucalyptus);
-  color: #FFFFFF;
-  font-size: 0.84rem;
+  color: #FAF8F4;
+  font-size: 0.81rem;
   line-height: 1.45;
-  padding: 0.55rem 1rem;
+  padding: 0.48rem 1rem;
   text-align: center;
-  border-bottom: 1px solid var(--eucalyptus-border);
+  border-bottom: 1px solid var(--eucalyptus-rule);
   overflow-wrap: anywhere;
 }
 
@@ -167,32 +164,68 @@ a:hover {
   margin: 0 auto;
   max-width: var(--container-max);
   font-weight: 500;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
 }
 
-/* Layout Containers */
+/* Containers & Architectural Sections */
 .container {
   width: 100%;
   max-width: var(--container-max);
   margin: 0 auto;
-  padding-left: clamp(1rem, 4vw, 2.25rem);
-  padding-right: clamp(1rem, 4vw, 2.25rem);
+  padding-left: clamp(1rem, 3.8vw, 2.5rem);
+  padding-right: clamp(1rem, 3.8vw, 2.5rem);
 }
 
 .section {
-  padding-top: clamp(3.25rem, 6vw, 5.5rem);
-  padding-bottom: clamp(3.25rem, 6vw, 5.5rem);
+  padding-top: clamp(3.5rem, 6.5vw, 6rem);
+  padding-bottom: clamp(3.5rem, 6.5vw, 6rem);
 }
 
 .section-stone {
   background-color: var(--stone);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
 }
 
 .section-eucalyptus {
   background-color: var(--eucalyptus);
   color: var(--linen);
+  border-top: 1px solid var(--eucalyptus-rule);
+}
+
+/* Architectural Section Index Bar */
+.arch-section-head {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.6rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: clamp(2rem, 4vw, 3.25rem);
+  border-bottom: 1px solid var(--hairline-strong);
+}
+
+@media (min-width: 820px) {
+  .arch-section-head {
+    grid-template-columns: 14rem minmax(0, 1fr);
+    gap: 2rem;
+    align-items: baseline;
+  }
+}
+
+.dark-surface .arch-section-head {
+  border-bottom-color: var(--eucalyptus-rule);
+}
+
+.arch-index-tag {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--terracotta-ink);
+}
+
+.dark-surface .arch-index-tag {
+  color: #D7E5DF;
 }
 
 /* Typography */
@@ -202,38 +235,39 @@ h3,
 h4 {
   font-family: var(--font-serif);
   font-weight: 400;
-  line-height: 1.18;
+  line-height: 1.15;
   margin-top: 0;
   color: var(--charcoal);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.012em;
 }
 
 .dark-surface h1,
 .dark-surface h2,
 .dark-surface h3,
 .dark-surface h4 {
-  color: #FFFFFF;
+  color: #FAF8F4;
 }
 
 h1 {
   font-size: clamp(2.05rem, 4.4vw, 3.35rem);
-  margin-bottom: 1.1rem;
+  margin-bottom: 1rem;
 }
 
 h1 em,
-h2 em {
+h2 em,
+h3 em {
   font-style: italic;
   font-weight: 400;
 }
 
 h2 {
-  font-size: clamp(1.65rem, 3.2vw, 2.45rem);
-  margin-bottom: 0.9rem;
+  font-size: clamp(1.7rem, 3.1vw, 2.55rem);
+  margin-bottom: 0.75rem;
 }
 
 h3 {
   font-size: clamp(1.25rem, 2vw, 1.55rem);
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.5rem;
 }
 
 p {
@@ -242,38 +276,28 @@ p {
 }
 
 .eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+  display: inline-block;
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--terracotta-text);
-  margin-bottom: 0.85rem;
-}
-
-.eyebrow::before {
-  content: "";
-  display: inline-block;
-  width: 1.5rem;
-  height: 1.5px;
-  background-color: currentColor;
+  letter-spacing: 0.13em;
+  color: var(--terracotta-ink);
+  margin-bottom: 0.75rem;
 }
 
 .dark-surface .eyebrow {
-  color: #D8E4DF;
+  color: #D7E5DF;
 }
 
 .lead {
-  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+  font-size: clamp(1.02rem, 1.4vw, 1.16rem);
   color: var(--muted);
   max-width: 62ch;
 }
 
 .dark-surface .lead {
-  color: #D8E4DF;
+  color: #DCE8E3;
 }
 
 /* Placeholder Tags (.ph) — Strict Overflow & Contrast Compliance */
@@ -283,10 +307,10 @@ p {
   background-color: var(--ph-bg);
   color: var(--ph-text);
   border: 1px dashed var(--ph-border);
-  border-radius: 6px;
-  padding: 0.14rem 0.5rem;
+  border-radius: var(--radius-arch);
+  padding: 0.12rem 0.48rem;
   font-family: var(--font-sans);
-  font-size: 0.86rem;
+  font-size: 0.84rem;
   font-weight: 600;
   line-height: 1.4;
   overflow-wrap: anywhere;
@@ -296,15 +320,15 @@ p {
 
 .dark-surface .ph {
   background-color: var(--eucalyptus-mid);
-  color: #FCEEE8;
-  border-color: #84A99F;
+  color: #FAF2EC;
+  border-color: #88ACA2;
 }
 
 .ph.status-open {
-  background-color: var(--sage-tint);
+  background-color: var(--sage-wash);
   color: var(--sage-ink);
   border-style: solid;
-  border-color: #9BB8AE;
+  border-color: #9AB7AC;
 }
 
 .ph.status-full {
@@ -314,23 +338,34 @@ p {
   border-color: var(--ph-border);
 }
 
-/* Site Header & Navigation */
+/* ==========================================================================
+   2. Bespoke Header Architecture — Asymmetric Architectural Editorial Masthead
+   Compartmentalised drawing-sheet masthead with 1px vertical & horizontal rules
+   ========================================================================== */
 .site-header {
   background-color: var(--linen);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--hairline-strong);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-.header-inner {
+.masthead-grid {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 clamp(0.85rem, 3vw, 2.5rem);
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  min-height: 4.4rem;
+  position: relative;
+}
+
+.masthead-brand-cell {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  min-height: 4.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.55rem 0.75rem 0.55rem 0;
+  min-width: 0;
 }
 
 .brand-link {
@@ -347,8 +382,8 @@ p {
 }
 
 .brand-mark {
-  width: 2.65rem;
-  height: 2.65rem;
+  width: 2.4rem;
+  height: 2.4rem;
   flex-shrink: 0;
 }
 
@@ -360,36 +395,51 @@ p {
 
 .brand-name {
   font-family: var(--font-serif);
-  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-size: clamp(0.98rem, 2vw, 1.18rem);
   font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   line-height: 1.15;
   color: var(--charcoal);
 }
 
-.brand-sub {
-  font-size: 0.76rem;
+.brand-sub-mobile {
+  font-size: 0.7rem;
   color: var(--muted);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 500;
+  margin-top: 0.12rem;
+}
+
+.masthead-coords-cell {
+  display: none;
+}
+
+.masthead-contact-cell {
+  display: none;
 }
 
 .nav-toggle {
+  align-self: center;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
   min-height: 44px;
   min-width: 44px;
-  padding: 0.5rem 0.85rem;
-  background-color: var(--card);
+  padding: 0.45rem 0.8rem;
+  background-color: var(--vellum);
   color: var(--charcoal);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-arch);
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: 0.78rem;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .nav-toggle:hover {
@@ -398,8 +448,8 @@ p {
 }
 
 .nav-toggle-icon {
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.05rem;
+  height: 1.05rem;
 }
 
 .primary-nav {
@@ -408,10 +458,11 @@ p {
   top: 100%;
   left: 0;
   right: 0;
-  background-color: var(--linen);
+  background-color: var(--vellum);
+  border-top: 1px solid var(--hairline);
   border-bottom: 2px solid var(--eucalyptus);
-  box-shadow: 0 18px 36px rgba(30, 37, 35, 0.14);
-  padding: 1rem clamp(1rem, 4vw, 2.25rem) 1.35rem;
+  padding: 0.5rem clamp(1rem, 3.8vw, 2.5rem) 1.25rem;
+  box-shadow: 0 18px 34px rgba(25, 33, 30, 0.1);
 }
 
 .primary-nav.is-open {
@@ -424,22 +475,37 @@ p {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+}
+
+.nav-list li {
+  border-bottom: 1px solid var(--hairline);
+}
+
+.nav-list li:last-child {
+  border-bottom: none;
 }
 
 .nav-link {
-  display: block;
-  padding: 0.7rem 0.9rem;
-  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  padding: 0.8rem 0.25rem;
   text-decoration: none;
   color: var(--charcoal);
+  font-size: 0.94rem;
   font-weight: 500;
-  font-size: 0.98rem;
+  letter-spacing: 0.02em;
+}
+
+.nav-num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--terracotta-ink);
 }
 
 .nav-link:hover,
 .nav-link[aria-current="page"] {
-  background-color: var(--stone);
   color: var(--eucalyptus);
 }
 
@@ -447,57 +513,137 @@ p {
   font-weight: 600;
 }
 
-.nav-cta-item {
-  margin-top: 0.45rem;
+.nav-mobile-meta {
+  padding-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.85rem;
 }
 
-@media (min-width: 900px) {
-  .nav-toggle {
+.nav-mobile-phone {
+  font-weight: 600;
+  color: var(--eucalyptus);
+  text-decoration: none;
+}
+
+@media (min-width: 980px) {
+  .brand-sub-mobile,
+  .nav-toggle,
+  .nav-mobile-meta {
     display: none;
   }
 
+  .masthead-grid {
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    align-items: stretch;
+    gap: 0;
+    min-height: 4.65rem;
+  }
+
+  .masthead-brand-cell {
+    padding: 0.65rem 1.35rem 0.65rem 0;
+    border-right: 1px solid var(--hairline);
+  }
+
+  .masthead-coords-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.65rem 1.35rem;
+    border-right: 1px solid var(--hairline);
+    font-size: 0.69rem;
+    line-height: 1.45;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: var(--muted);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .masthead-coords-cell strong {
+    color: var(--charcoal);
+    font-weight: 600;
+  }
+
   .primary-nav {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: static;
     background: transparent;
-    border-bottom: none;
+    border: none;
+    border-right: 1px solid var(--hairline);
     box-shadow: none;
-    padding: 0;
+    padding: 0 1.15rem;
   }
 
   .nav-list {
     flex-direction: row;
     align-items: center;
-    gap: 0.35rem;
+    gap: 1.5rem;
+  }
+
+  .nav-list li {
+    border-bottom: none;
   }
 
   .nav-link {
-    padding: 0.5rem 0.85rem;
-    border-radius: var(--radius-pill);
-    font-size: 0.93rem;
+    padding: 0.4rem 0;
+    font-size: 0.86rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 1.5px solid transparent;
   }
 
-  .nav-cta-item {
-    margin-top: 0;
-    margin-left: 0.4rem;
+  .nav-link[aria-current="page"] {
+    border-bottom-color: var(--terracotta);
+  }
+
+  .masthead-contact-cell {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.65rem 0 0.65rem 1.35rem;
+    white-space: nowrap;
+  }
+
+  .masthead-tel {
+    font-family: var(--font-sans);
+    font-size: 0.84rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+
+  .masthead-tel:hover {
+    color: var(--terracotta-ink);
   }
 }
 
-/* Buttons */
+/* ==========================================================================
+   Buttons — Crisp Architectural Geometry
+   ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-height: 46px;
-  padding: 0.72rem 1.35rem;
-  border-radius: var(--radius-pill);
+  min-height: 45px;
+  padding: 0.7rem 1.35rem;
+  border-radius: var(--radius-arch);
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
   line-height: 1.25;
   text-decoration: none;
-  border: 1.5px solid transparent;
+  border: 1px solid transparent;
   cursor: pointer;
   text-align: center;
   max-width: 100%;
@@ -506,21 +652,25 @@ p {
 
 .btn-primary {
   background-color: var(--terracotta);
+  border-color: var(--terracotta);
   color: #FFFFFF;
 }
 
 .btn-primary:hover {
   background-color: var(--terracotta-hover);
+  border-color: var(--terracotta-hover);
   color: #FFFFFF;
 }
 
 .btn-eucalyptus {
   background-color: var(--eucalyptus);
+  border-color: var(--eucalyptus);
   color: #FFFFFF;
 }
 
 .btn-eucalyptus:hover {
-  background-color: #18302A;
+  background-color: #142621;
+  border-color: #142621;
   color: #FFFFFF;
 }
 
@@ -547,63 +697,535 @@ p {
 }
 
 .btn-sm {
-  min-height: 42px;
-  padding: 0.52rem 1rem;
-  font-size: 0.88rem;
+  min-height: 40px;
+  padding: 0.48rem 0.92rem;
+  font-size: 0.77rem;
 }
 
 .btn-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-top: 1.5rem;
+  gap: 0.75rem;
+  margin-top: 1.4rem;
 }
 
-/* Hero & Editorial Split */
-.hero-section {
-  padding-top: clamp(2.25rem, 5vw, 4.25rem);
-  padding-bottom: clamp(3rem, 6vw, 5rem);
+/* ==========================================================================
+   3. Home Hero — Panoramic Granary Stage + Overlapping Vellum Sheet
+      + 4-Column Architectural Week-at-a-Glance Schedule Ribbon
+   ========================================================================== */
+.sanctuary-hero {
+  padding-top: clamp(1rem, 2.5vw, 1.75rem);
+  padding-bottom: clamp(3rem, 5.5vw, 5rem);
 }
 
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(2rem, 4vw, 3.5rem);
+.editorial-index-bar {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem 1.5rem;
+  padding: 0.65rem 0;
+  margin-bottom: 1rem;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  font-size: 0.73rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
 }
 
-@media (min-width: 960px) {
-  .hero-grid {
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+.editorial-index-bar span:first-child {
+  color: var(--terracotta-ink);
+}
+
+.granary-panorama-stage {
+  position: relative;
+}
+
+.granary-panorama {
+  margin: 0;
+  position: relative;
+  border: 1px solid var(--hairline-strong);
+  background-color: var(--stone-deep);
+  overflow: hidden;
+}
+
+.granary-panorama img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: center 45%;
+}
+
+@media (min-width: 900px) {
+  .granary-panorama img {
+    aspect-ratio: 21 / 9;
   }
 }
 
-.hero-copy {
-  min-width: 0;
+.panorama-rail-caption {
+  padding: 0.55rem 0.9rem;
+  background-color: var(--stone);
+  border-top: 1px solid var(--hairline);
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  text-align: right;
 }
 
-.term-callout {
-  margin-top: 1.75rem;
-  padding: 0.95rem 1.15rem;
-  background-color: var(--stone);
-  border-left: 3.5px solid var(--eucalyptus);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  font-size: 0.92rem;
+@media (min-width: 900px) {
+  .panorama-rail-caption {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    max-width: 33%;
+    background-color: rgba(250, 248, 244, 0.95);
+    color: var(--charcoal);
+    border-top: 1px solid var(--hairline-strong);
+    border-left: 1px solid var(--hairline-strong);
+    padding: 0.45rem 0.85rem;
+    font-size: 0.74rem;
+    text-align: left;
+  }
+}
+
+/* Overlapping Off-Center Vellum Paper Card */
+.vellum-editorial-sheet {
+  background-color: var(--vellum);
+  border: 1px solid var(--hairline-strong);
+  padding: clamp(1.4rem, 3.5vw, 2.5rem);
+  margin-top: 1rem;
+  position: relative;
+  z-index: 3;
+}
+
+@media (min-width: 900px) {
+  .vellum-editorial-sheet {
+    margin-top: -8.5rem;
+    margin-left: clamp(1.25rem, 3.2vw, 2.5rem);
+    max-width: min(39rem, 58%);
+    box-shadow: 0 20px 44px rgba(25, 33, 30, 0.08);
+  }
+}
+
+.vellum-sheet-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.15rem;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 0.73rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--terracotta-ink);
+}
+
+.vellum-sheet-meta .meta-right {
+  color: var(--muted);
+}
+
+.vellum-rate-ledger {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  margin: 1.35rem 0;
+}
+
+@media (min-width: 560px) {
+  .vellum-rate-ledger {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.vellum-rate-cell {
+  padding: 0.9rem 0;
+}
+
+@media (min-width: 560px) {
+  .vellum-rate-cell:first-child {
+    padding-right: 1.25rem;
+    border-right: 1px solid var(--hairline);
+  }
+  .vellum-rate-cell:last-child {
+    padding-left: 1.25rem;
+  }
+}
+
+@media (max-width: 559px) {
+  .vellum-rate-cell:first-child {
+    border-bottom: 1px solid var(--hairline);
+  }
+}
+
+.vellum-rate-figure {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  color: var(--eucalyptus);
+  line-height: 1.1;
+  display: block;
+}
+
+.vellum-rate-desc {
+  font-size: 0.86rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+  display: block;
+}
+
+.vellum-term-note {
+  margin-top: 1.25rem;
+  padding-top: 0.95rem;
+  border-top: 1px solid var(--hairline);
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+.vellum-term-note strong {
   color: var(--charcoal);
 }
 
-.term-callout strong {
-  color: var(--eucalyptus);
+/* 4-Column Granary Week-at-a-Glance Architectural Schedule Ribbon */
+.week-ribbon-sheet {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  border: 1px solid var(--hairline-strong);
+  background-color: var(--vellum);
 }
 
-/* Editorial Figures & Images */
+.week-ribbon-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem 1.25rem;
+  padding: 0.85rem 1.25rem;
+  background-color: var(--stone);
+  border-bottom: 1px solid var(--hairline-strong);
+}
+
+.week-ribbon-title {
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--charcoal);
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+.week-ribbon-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--terracotta-ink);
+  text-decoration: none;
+}
+
+.week-ribbon-link:hover {
+  color: var(--eucalyptus);
+  text-decoration: underline;
+}
+
+.week-ribbon-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 680px) {
+  .week-ribbon-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1040px) {
+  .week-ribbon-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.ribbon-day-col {
+  padding: 1.15rem 1.25rem;
+  border-bottom: 1px solid var(--hairline);
+  min-width: 0;
+}
+
+.ribbon-day-col:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 680px) and (max-width: 1039px) {
+  .ribbon-day-col:nth-child(odd) {
+    border-right: 1px solid var(--hairline);
+  }
+  .ribbon-day-col:nth-child(3),
+  .ribbon-day-col:nth-child(4) {
+    border-bottom: none;
+  }
+}
+
+@media (min-width: 1040px) {
+  .ribbon-day-col {
+    border-bottom: none;
+    border-right: 1px solid var(--hairline);
+  }
+  .ribbon-day-col:last-child {
+    border-right: none;
+  }
+}
+
+.ribbon-day-name {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--eucalyptus);
+  margin: 0 0 0.8rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.ribbon-slot-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.ribbon-slot-list li {
+  font-size: 0.87rem;
+  line-height: 1.38;
+  color: var(--charcoal);
+}
+
+.ribbon-slot-time {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 0.79rem;
+  letter-spacing: 0.04em;
+  color: var(--terracotta-ink);
+  margin-right: 0.35rem;
+}
+
+.ribbon-slot-name {
+  display: block;
+}
+
+/* ==========================================================================
+   4. Signature Interactive Centrepiece — "Which Practice Suits Your Body?"
+   ========================================================================== */
+.sanctuary-guide-wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid var(--hairline-strong);
+  background-color: var(--vellum);
+}
+
+.pathway-selector-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-bottom: 1px solid var(--hairline-strong);
+}
+
+@media (min-width: 680px) {
+  .pathway-selector-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1040px) {
+  .pathway-selector-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.pathway-tab {
+  appearance: none;
+  background-color: var(--linen);
+  border: none;
+  border-bottom: 1px solid var(--hairline);
+  padding: 1.25rem 1.2rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: background-color 0.18s ease, color 0.18s ease;
+  color: var(--charcoal);
+  font-family: var(--font-sans);
+  min-width: 0;
+}
+
+.pathway-tab:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 680px) and (max-width: 1039px) {
+  .pathway-tab:nth-child(odd) {
+    border-right: 1px solid var(--hairline);
+  }
+  .pathway-tab:nth-child(3),
+  .pathway-tab:nth-child(4) {
+    border-bottom: none;
+  }
+}
+
+@media (min-width: 1040px) {
+  .pathway-tab {
+    border-bottom: none;
+    border-right: 1px solid var(--hairline);
+  }
+  .pathway-tab:last-child {
+    border-right: none;
+  }
+}
+
+.pathway-tab:hover {
+  background-color: var(--vellum);
+}
+
+.pathway-tab[aria-selected="true"] {
+  background-color: var(--eucalyptus);
+  color: #FAF8F4;
+}
+
+.pathway-num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--terracotta-ink);
+}
+
+.pathway-tab[aria-selected="true"] .pathway-num {
+  color: #E7B8A8;
+}
+
+.pathway-title {
+  font-family: var(--font-serif);
+  font-size: 1.16rem;
+  line-height: 1.22;
+  font-weight: 500;
+  color: inherit;
+}
+
+.pathway-hint {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.pathway-tab[aria-selected="true"] .pathway-hint {
+  color: #D7E5DF;
+}
+
+.pathway-panel {
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  background-color: var(--vellum);
+}
+
+.pathway-panel[hidden] {
+  display: none;
+}
+
+.pathway-panel-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  align-items: start;
+}
+
+@media (min-width: 880px) {
+  .pathway-panel-grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 2.5rem;
+  }
+}
+
+.pathway-rec-badge {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--sage-ink);
+  background-color: var(--sage-wash);
+  border: 1px solid #A3BEB4;
+  padding: 0.24rem 0.65rem;
+  margin-bottom: 0.8rem;
+}
+
+.pathway-times-box {
+  background-color: var(--linen);
+  border: 1px solid var(--hairline);
+  padding: 1.25rem;
+}
+
+.pathway-times-heading {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--eucalyptus);
+  margin: 0 0 0.8rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.pathway-times-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  font-size: 0.9rem;
+}
+
+.pathway-times-list li {
+  padding-bottom: 0.55rem;
+  border-bottom: 1px dashed var(--hairline);
+}
+
+.pathway-times-list li:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.pathway-times-list strong {
+  color: var(--terracotta-ink);
+  display: block;
+  font-size: 0.83rem;
+}
+
+/* ==========================================================================
+   5. Architectural Monograph Spreads, Cards & Figures
+   ========================================================================== */
+.monograph-spread {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 4.5vw, 3.5rem);
+  align-items: start;
+}
+
+@media (min-width: 940px) {
+  .monograph-spread {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  }
+}
+
 .editorial-figure {
   margin: 0;
-  background-color: var(--stone);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
+  background-color: var(--vellum);
+  border: 1px solid var(--hairline-strong);
   min-width: 0;
 }
 
@@ -614,30 +1236,20 @@ p {
   background-color: var(--stone-deep);
 }
 
-.editorial-figure.hero-media img {
-  aspect-ratio: 1440 / 803;
-}
-
 .editorial-figure.feature-media img {
   aspect-ratio: 1200 / 896;
 }
 
 .editorial-figure figcaption {
-  padding: 0.7rem 1rem;
-  background-color: var(--card);
-  border-top: 1px solid var(--border);
+  padding: 0.68rem 0.95rem;
+  background-color: var(--stone);
+  border-top: 1px solid var(--hairline);
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   line-height: 1.45;
 }
 
-/* Section Headers */
-.section-header {
-  max-width: 66ch;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
-}
-
-/* Cards & Grids */
+/* Hairline Architectural Cards & Grids */
 .grid-2 {
   display: grid;
   grid-template-columns: 1fr;
@@ -666,43 +1278,57 @@ p {
 }
 
 .studio-card {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  background-color: var(--vellum);
+  border: 1px solid var(--hairline-strong);
   padding: clamp(1.35rem, 3vw, 2rem);
-  box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
 
 .studio-card-accent {
-  border-top: 4px solid var(--eucalyptus);
+  border-top: 3px solid var(--eucalyptus);
 }
 
 .studio-card-clay {
-  border-top: 4px solid var(--terracotta);
+  border-top: 3px solid var(--terracotta);
+}
+
+.level-pill {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background-color: var(--sage-wash);
+  color: var(--sage-ink);
+  border: 1px solid #AEC6BD;
+  padding: 0.2rem 0.58rem;
+  margin-bottom: 0.75rem;
 }
 
 .price-tag {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.4rem;
-  margin: 0.35rem 0 0.9rem;
+  gap: 0.45rem;
+  margin: 0.25rem 0 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--hairline);
 }
 
 .price-amount {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 3.5vw, 2.6rem);
-  font-weight: 500;
+  font-size: clamp(2rem, 3.4vw, 2.55rem);
+  font-weight: 400;
   color: var(--eucalyptus);
   line-height: 1;
 }
 
 .price-unit {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--muted);
-  font-weight: 500;
 }
 
 .feature-list {
@@ -711,13 +1337,13 @@ p {
   margin: 0 0 1.35rem;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.65rem;
 }
 
 .feature-list li {
   position: relative;
-  padding-left: 1.4rem;
-  font-size: 0.95rem;
+  padding-left: 1.15rem;
+  font-size: 0.93rem;
   color: var(--charcoal);
 }
 
@@ -725,10 +1351,9 @@ p {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.58rem;
+  top: 0.68rem;
   width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
+  height: 1.5px;
   background-color: var(--terracotta);
 }
 
@@ -737,87 +1362,7 @@ p {
   padding-top: 0.5rem;
 }
 
-/* Level Guide Cards */
-.level-pill {
-  display: inline-block;
-  align-self: flex-start;
-  font-size: 0.76rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  background-color: var(--sage-tint);
-  color: var(--sage-ink);
-  padding: 0.25rem 0.65rem;
-  border-radius: var(--radius-pill);
-  margin-bottom: 0.75rem;
-}
-
-.level-times {
-  margin-top: auto;
-  padding-top: 0.9rem;
-  border-top: 1px solid var(--stone);
-  font-size: 0.88rem;
-  color: var(--muted);
-  font-weight: 500;
-}
-
-/* Weekly Snapshot Strip (Index) */
-.week-strip {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-@media (min-width: 680px) {
-  .week-strip {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1040px) {
-  .week-strip {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-.day-summary-card {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1.25rem;
-  min-width: 0;
-}
-
-.day-summary-card h3 {
-  font-size: 1.25rem;
-  padding-bottom: 0.55rem;
-  margin-bottom: 0.8rem;
-  border-bottom: 1px solid var(--stone);
-  color: var(--eucalyptus);
-}
-
-.mini-slot-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.mini-slot-list li {
-  font-size: 0.89rem;
-  line-height: 1.4;
-}
-
-.mini-slot-time {
-  display: block;
-  font-weight: 600;
-  color: var(--terracotta-text);
-  font-size: 0.82rem;
-}
-
-/* Sanctuary Location & Contact Block */
+/* Courtyard Location Section */
 .location-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -832,83 +1377,199 @@ p {
 }
 
 .address-panel {
-  background-color: var(--card);
+  background-color: var(--vellum);
   color: var(--charcoal);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--hairline-strong);
   padding: clamp(1.5rem, 3vw, 2.25rem);
-  box-shadow: var(--shadow-soft);
   min-width: 0;
 }
 
 .address-panel h3 {
   color: var(--charcoal);
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--hairline);
 }
 
 .contact-dl {
-  margin: 1rem 0 1.5rem;
+  margin: 1rem 0 0;
   display: grid;
   gap: 0.9rem;
 }
 
+.contact-dl > div {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.contact-dl > div:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
 .contact-dl dt {
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   font-weight: 600;
   color: var(--muted);
 }
 
 .contact-dl dd {
   margin: 0.2rem 0 0;
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 500;
   color: var(--charcoal);
   overflow-wrap: anywhere;
 }
 
-/* Interactive Timetable Filter & Schedule (timetable-booking.html) */
-.page-hero-compact {
-  padding-top: clamp(2.25rem, 4.5vw, 3.75rem);
-  padding-bottom: clamp(2rem, 4vw, 3rem);
+/* ==========================================================================
+   6. Architectural Subpage Folio Headers (Timetable & Reformer)
+   ========================================================================== */
+.folio-page-header {
+  padding-top: clamp(1.5rem, 3.5vw, 2.75rem);
+  padding-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
   background-color: var(--stone);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--hairline-strong);
 }
 
+.folio-meta-strip {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--hairline-strong);
+  border-bottom: 1px solid var(--hairline-strong);
+  margin-top: 1.65rem;
+  background-color: var(--linen);
+}
+
+@media (min-width: 760px) {
+  .folio-meta-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.folio-meta-cell {
+  padding: 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 0.86rem;
+}
+
+.folio-meta-cell:last-child {
+  border-bottom: none;
+}
+
+@media (min-width: 760px) {
+  .folio-meta-cell {
+    border-bottom: none;
+    border-right: 1px solid var(--hairline);
+  }
+  .folio-meta-cell:last-child {
+    border-right: none;
+  }
+}
+
+.folio-meta-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--terracotta-ink);
+  margin-bottom: 0.2rem;
+}
+
+/* Reformer Monograph Plate (reformer-tuition.html — No 60/40 SaaS Split!) */
+.reformer-plate-stage {
+  padding-top: clamp(1.25rem, 3vw, 2.25rem);
+  padding-bottom: clamp(3rem, 5.5vw, 4.75rem);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.reformer-architectural-frame {
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid var(--hairline-strong);
+  background-color: var(--vellum);
+}
+
+@media (min-width: 940px) {
+  .reformer-architectural-frame {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  }
+}
+
+.reformer-plate-figure {
+  margin: 0;
+  border-bottom: 1px solid var(--hairline-strong);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 940px) {
+  .reformer-plate-figure {
+    border-bottom: none;
+    border-right: 1px solid var(--hairline-strong);
+  }
+}
+
+.reformer-plate-figure img {
+  width: 100%;
+  aspect-ratio: 1200 / 896;
+  object-fit: cover;
+  flex: 1;
+}
+
+.reformer-plate-figure figcaption {
+  padding: 0.65rem 1rem;
+  background-color: var(--stone);
+  border-top: 1px solid var(--hairline);
+  font-size: 0.79rem;
+  color: var(--muted);
+}
+
+.reformer-spec-sheet {
+  padding: clamp(1.4rem, 3.5vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ==========================================================================
+   7. Interactive Timetable Filter & Schedule (timetable-booking.html)
+   ========================================================================== */
 .filter-toolbar {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1.15rem;
-  margin-bottom: 1.75rem;
-  box-shadow: var(--shadow-card);
+  background-color: var(--vellum);
+  border: 1px solid var(--hairline-strong);
+  padding: 1.2rem;
+  margin-bottom: 2rem;
 }
 
 .filter-label {
   display: block;
-  font-size: 0.82rem;
-  font-weight: 600;
+  font-size: 0.74rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--muted);
-  margin-bottom: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--terracotta-ink);
+  margin-bottom: 0.75rem;
 }
 
 .filter-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .filter-btn {
   min-height: 42px;
-  padding: 0.45rem 0.95rem;
-  border-radius: var(--radius-pill);
-  border: 1.5px solid var(--border);
+  padding: 0.45rem 0.92rem;
+  border-radius: var(--radius-arch);
+  border: 1px solid var(--hairline-strong);
   background-color: var(--linen);
   color: var(--charcoal);
   font-family: var(--font-sans);
-  font-size: 0.88rem;
+  font-size: 0.83rem;
   font-weight: 600;
+  letter-spacing: 0.03em;
   cursor: pointer;
   transition: all 0.16s ease;
 }
@@ -925,8 +1586,10 @@ p {
 }
 
 .filter-count {
-  margin: 0.8rem 0 0;
-  font-size: 0.88rem;
+  margin: 0.85rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--hairline);
+  font-size: 0.86rem;
   color: var(--muted);
 }
 
@@ -940,31 +1603,31 @@ p {
 
 .day-heading {
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 1.5rem;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 1.45rem;
   color: var(--eucalyptus);
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
   padding-bottom: 0.45rem;
-  border-bottom: 1.5px solid var(--border);
+  border-bottom: 1px solid var(--hairline-strong);
 }
 
 .slot-stack {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  border-top: 1px solid var(--hairline);
 }
 
 .class-slot-card {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1.25rem;
+  background-color: var(--vellum);
+  border-left: 1px solid var(--hairline);
+  border-right: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  padding: 1.15rem 1.25rem;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
+  gap: 0.9rem;
   align-items: center;
-  box-shadow: var(--shadow-card);
   min-width: 0;
 }
 
@@ -975,19 +1638,17 @@ p {
 @media (min-width: 820px) {
   .class-slot-card {
     grid-template-columns: 9.5rem minmax(0, 1fr) auto;
-    gap: 1.35rem;
+    gap: 1.5rem;
   }
 }
 
 .slot-time-badge {
   font-family: var(--font-serif);
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1.15rem;
   color: var(--eucalyptus);
   background-color: var(--linen);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--hairline);
+  padding: 0.48rem 0.7rem;
   text-align: center;
 }
 
@@ -996,16 +1657,16 @@ p {
 }
 
 .slot-details h4 {
-  font-size: 1.22rem;
-  margin-bottom: 0.3rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
 }
 
 .slot-meta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem 0.85rem;
-  font-size: 0.9rem;
+  gap: 0.45rem 0.85rem;
+  font-size: 0.88rem;
   color: var(--muted);
 }
 
@@ -1015,7 +1676,9 @@ p {
   gap: 0.5rem;
 }
 
-/* Booking & Enquiry Forms */
+/* ==========================================================================
+   8. Booking Calculator & Accessible Dummy Forms
+   ========================================================================== */
 .booking-layout {
   display: grid;
   grid-template-columns: 1fr;
@@ -1032,8 +1695,8 @@ p {
 .calculator-card {
   background-color: var(--eucalyptus);
   color: var(--linen);
-  border-radius: var(--radius-md);
-  padding: clamp(1.4rem, 3vw, 2rem);
+  border: 1px solid var(--eucalyptus-rule);
+  padding: clamp(1.4rem, 3vw, 2.15rem);
   min-width: 0;
 }
 
@@ -1043,8 +1706,7 @@ p {
 
 .calc-total-box {
   background-color: var(--eucalyptus-mid);
-  border: 1px solid #5B857B;
-  border-radius: var(--radius-sm);
+  border: 1px solid #578075;
   padding: 1.1rem;
   margin: 1.1rem 0;
 }
@@ -1058,18 +1720,16 @@ p {
 }
 
 .calc-sub {
-  font-size: 0.9rem;
-  color: #E5EFEA;
-  margin-top: 0.25rem;
+  font-size: 0.88rem;
+  color: #E3EFEA;
+  margin-top: 0.28rem;
   display: block;
 }
 
 .form-card {
-  background-color: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  background-color: var(--vellum);
+  border: 1px solid var(--hairline-strong);
   padding: clamp(1.4rem, 3.2vw, 2.25rem);
-  box-shadow: var(--shadow-soft);
   min-width: 0;
 }
 
@@ -1093,18 +1753,18 @@ p {
 
 .form-field label {
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: var(--charcoal);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.38rem;
 }
 
 .required-mark {
-  color: var(--terracotta-text);
+  color: var(--terracotta-ink);
   margin-left: 0.15rem;
 }
 
 .field-hint {
-  font-size: 0.83rem;
+  font-size: 0.82rem;
   color: var(--muted);
   margin-top: 0.3rem;
 }
@@ -1118,17 +1778,17 @@ p {
   max-width: 100%;
   min-height: 46px;
   padding: 0.65rem 0.85rem;
-  border-radius: var(--radius-sm);
-  border: 1.5px solid #B5AEA0;
+  border-radius: var(--radius-arch);
+  border: 1px solid #9D9586;
   background-color: #FFFFFF;
   color: var(--charcoal);
   font-family: var(--font-sans);
-  font-size: 0.98rem;
+  font-size: 0.96rem;
   line-height: 1.4;
 }
 
 .form-field textarea {
-  min-height: 6.5rem;
+  min-height: 6.25rem;
   resize: vertical;
 }
 
@@ -1136,20 +1796,20 @@ p {
 .form-field select:focus,
 .form-field textarea:focus {
   border-color: var(--eucalyptus);
-  outline: 3px solid var(--terracotta);
+  outline: 2.5px solid var(--terracotta);
   outline-offset: 1px;
 }
 
 .form-field [aria-invalid="true"] {
-  border-color: #9E2A2B;
+  border-color: #962627;
   background-color: #FFF8F7;
 }
 
 .field-error {
-  color: #8F1D1E;
-  font-size: 0.84rem;
+  color: #8A1C1D;
+  font-size: 0.83rem;
   font-weight: 600;
-  margin-top: 0.32rem;
+  margin-top: 0.3rem;
 }
 
 .field-error[hidden] {
@@ -1160,46 +1820,48 @@ p {
   display: flex;
   align-items: flex-start;
   gap: 0.7rem;
-  padding: 0.6rem 0;
+  padding: 0.55rem 0;
 }
 
 .checkbox-row input[type="checkbox"] {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.2rem;
+  height: 1.2rem;
   margin-top: 0.2rem;
   flex-shrink: 0;
   accent-color: var(--eucalyptus);
 }
 
 .checkbox-row label {
-  font-size: 0.91rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--charcoal);
   cursor: pointer;
 }
 
 .form-confirmation {
-  margin-top: 1.25rem;
-  padding: 1.1rem 1.25rem;
-  border-radius: var(--radius-sm);
-  background-color: var(--sage-tint);
-  border: 2px solid var(--eucalyptus);
+  margin-top: 1.15rem;
+  padding: 1.05rem 1.2rem;
+  border-radius: var(--radius-arch);
+  background-color: var(--sage-wash);
+  border: 1.5px solid var(--eucalyptus);
   color: var(--sage-ink);
   font-weight: 600;
-  font-size: 0.98rem;
+  font-size: 0.96rem;
 }
 
 .form-confirmation[hidden] {
   display: none;
 }
 
-/* Footer */
+/* ==========================================================================
+   9. Architectural Footer & Solid Opaque Mobile Bottom Dock
+   ========================================================================== */
 .site-footer {
   background-color: var(--stone);
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--hairline-strong);
   padding: 3rem 0 2.25rem;
   color: var(--charcoal);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
 }
 
 .footer-grid {
@@ -1207,7 +1869,7 @@ p {
   grid-template-columns: 1fr;
   gap: 2rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--hairline-strong);
 }
 
 @media (min-width: 820px) {
@@ -1217,10 +1879,12 @@ p {
 }
 
 .footer-heading {
-  font-family: var(--font-serif);
-  font-size: 1.18rem;
-  font-weight: 500;
-  margin-bottom: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  margin-bottom: 0.8rem;
   color: var(--eucalyptus);
 }
 
@@ -1237,8 +1901,8 @@ p {
   padding-top: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
-  font-size: 0.84rem;
+  gap: 0.5rem;
+  font-size: 0.82rem;
   color: var(--muted);
 }
 
@@ -1246,15 +1910,15 @@ p {
   margin: 0;
 }
 
-/* Solid Opaque Sticky Mobile Action Bar */
+/* Solid 100% Opaque Sticky Mobile Action Dock */
 .mobile-action-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: 1100;
-  background-color: #23423B; /* 100% Solid Opaque Deep Eucalyptus */
-  border-top: 2px solid #4A7269;
+  background-color: #1E352F;
+  border-top: 1.5px solid #4A7066;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   padding: 0.45rem 0.5rem;
@@ -1266,32 +1930,35 @@ p {
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  padding: 0.35rem 0.4rem;
-  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.35rem;
+  border-radius: var(--radius-arch);
   text-decoration: none;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   text-align: center;
   line-height: 1.2;
   color: #FFFFFF;
-  background-color: #355850;
+  background-color: #2B4941;
 }
 
 .mobile-action-link:hover {
-  background-color: #426B62;
+  background-color: #365950;
   color: #FFFFFF;
 }
 
 .mobile-action-link.action-accent {
-  background-color: #A65338;
+  background-color: #9E4A33;
   color: #FFFFFF;
 }
 
 .mobile-action-link.action-accent:hover {
-  background-color: #8B422B;
+  background-color: #813925;
+  color: #FFFFFF;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 980px) {
   .mobile-action-bar {
     display: none;
   }

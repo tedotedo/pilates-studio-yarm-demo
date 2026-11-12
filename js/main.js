@@ -1,5 +1,6 @@
 /* ==========================================================================
-   The Pilates Studio Yarm — Client-Side Navigation, Timetable Filter & Forms
+   The Pilates Studio Yarm — Client-Side Navigation, Sanctuary Pathway Guide,
+   URL-Aware Timetable Filter, Block Fee Calculator & Accessible Dummy Forms
    Zero external network calls · Keyboard accessible · Concept demonstration
    ========================================================================== */
 
@@ -8,7 +9,7 @@
 
   var DEMO_SUBMIT_TEXT = 'Demo only \u2013 in the live site this would go straight to The Pilates Studio Yarm.';
 
-  /* 1. Keyboard-Accessible Mobile Navigation */
+  /* 1. Keyboard-Accessible Mobile Index Navigation */
   var navToggle = document.querySelector('.nav-toggle');
   var primaryNav = document.getElementById('primary-nav');
 
@@ -17,7 +18,7 @@
     primaryNav.classList.remove('is-open');
     navToggle.setAttribute('aria-expanded', 'false');
     var labelSpan = navToggle.querySelector('.nav-toggle-text');
-    if (labelSpan) labelSpan.textContent = 'Menu';
+    if (labelSpan) labelSpan.textContent = 'Index';
     if (returnFocus) {
       navToggle.focus();
     }
@@ -54,13 +55,58 @@
     });
 
     window.addEventListener('resize', function () {
-      if (window.innerWidth >= 900 && navToggle.getAttribute('aria-expanded') === 'true') {
+      if (window.innerWidth >= 980 && navToggle.getAttribute('aria-expanded') === 'true') {
         closeMobileNav(false);
       }
     });
   }
 
-  /* 2. Interactive Timetable Filter (timetable-booking.html) */
+  /* 2. Interactive "Which Practice Suits Your Body?" Sanctuary Guide (index.html) */
+  var pathwayTabList = document.querySelector('.pathway-selector-grid[role="tablist"]');
+  if (pathwayTabList) {
+    var pathwayTabs = Array.prototype.slice.call(pathwayTabList.querySelectorAll('[role="tab"]'));
+    var pathwayPanels = Array.prototype.slice.call(document.querySelectorAll('.pathway-panel[role="tabpanel"]'));
+
+    function activatePathway(targetTab, moveFocus) {
+      var panelId = targetTab.getAttribute('aria-controls');
+      pathwayTabs.forEach(function (tab) {
+        var active = tab === targetTab;
+        tab.setAttribute('aria-selected', active ? 'true' : 'false');
+        tab.setAttribute('tabindex', active ? '0' : '-1');
+      });
+      pathwayPanels.forEach(function (panel) {
+        panel.hidden = panel.id !== panelId;
+      });
+      if (moveFocus) {
+        targetTab.focus();
+      }
+    }
+
+    pathwayTabs.forEach(function (tab, idx) {
+      tab.addEventListener('click', function () {
+        activatePathway(tab, false);
+      });
+
+      tab.addEventListener('keydown', function (event) {
+        var nextIdx = null;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+          nextIdx = (idx + 1) % pathwayTabs.length;
+        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+          nextIdx = (idx - 1 + pathwayTabs.length) % pathwayTabs.length;
+        } else if (event.key === 'Home') {
+          nextIdx = 0;
+        } else if (event.key === 'End') {
+          nextIdx = pathwayTabs.length - 1;
+        }
+        if (nextIdx !== null) {
+          event.preventDefault();
+          activatePathway(pathwayTabs[nextIdx], true);
+        }
+      });
+    });
+  }
+
+  /* 3. Interactive Timetable Filter + URL ?level= Pre-Filtering (timetable-booking.html) */
   var filterButtons = document.querySelectorAll('.filter-btn[data-filter]');
   var slotCards = document.querySelectorAll('.class-slot-card[data-levels]');
   var dayGroups = document.querySelectorAll('.timetable-day-group');
@@ -68,6 +114,10 @@
 
   function applyTimetableFilter(selectedFilter) {
     var visibleSlots = 0;
+
+    filterButtons.forEach(function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-filter') === selectedFilter ? 'true' : 'false');
+    });
 
     slotCards.forEach(function (card) {
       var levels = (card.getAttribute('data-levels') || '').split(',');
@@ -96,15 +146,25 @@
     filterButtons.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var filterVal = btn.getAttribute('data-filter');
-        filterButtons.forEach(function (b) {
-          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
-        });
         applyTimetableFilter(filterVal);
       });
     });
+
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var preFilter = params.get('level');
+      if (preFilter) {
+        var targetFilterBtn = document.querySelector('.filter-btn[data-filter="' + preFilter + '"]');
+        if (targetFilterBtn) {
+          applyTimetableFilter(preFilter);
+        }
+      }
+    } catch (e) {
+      /* Ignore malformed query params */
+    }
   }
 
-  /* 3. Half-Term Block Calculator & Slot Pre-Selection */
+  /* 4. Half-Term Block Calculator & Slot Pre-Selection */
   var bookingClassSelect = document.getElementById('booking-class');
   var bookingModeSelect = document.getElementById('booking-mode');
   var calcWeeksSelect = document.getElementById('calc-weeks');
@@ -169,7 +229,7 @@
     });
   });
 
-  /* 4. 1:1 Reformer Quick-Select Buttons (reformer-tuition.html) */
+  /* 5. 1:1 Reformer Quick-Select Buttons (reformer-tuition.html) */
   var reformerSlotButtons = document.querySelectorAll('[data-reformer-slot]');
   var reformerSlotSelect = document.getElementById('reformer-slot');
   reformerSlotButtons.forEach(function (btn) {
@@ -191,7 +251,7 @@
     });
   });
 
-  /* 5. Accessible Client-Side Dummy Form Validation & Submission */
+  /* 6. Accessible Client-Side Dummy Form Validation & Submission */
   function validateField(field) {
     var errorId = field.getAttribute('aria-describedby');
     var errorEl = errorId ? document.getElementById(errorId) : null;

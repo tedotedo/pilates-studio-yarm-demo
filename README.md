@@ -4,20 +4,16 @@ Independent static concept website prepared by **Mark Aszkenasy** for **The Pila
 
 > **Disclaimer:** This is an unsolicited concept demonstration and is **not** the official website of The Pilates Studio Yarm. All pages carry `<meta name="robots" content="noindex, nofollow">` and a persistent top notice banner.
 
-## Included Files
+## Architectural Direction — *"Kinfolk / Cereal Architectural Sanctuary Magazine"*
 
-- `index.html` — Calm Granary studio overview, `£9.00/class` half-term mat block & `£40/hr` 1:1/Reformer pricing summary, class level guide, Mon–Thu rhythm snapshot, and Google Maps directions to The Granary.
-- `timetable-booking.html` — Mobile-first interactive weekly timetable with level filters (`All`, `Beginners`, `Improvers`, `Functional / Osteoporosis`, `Power`, `Intermediate/Adv`), illustrative demo availability tags, live half-term block fee calculator, and accessible Half-Term Block Booking / Waiting List dummy form.
-- `reformer-tuition.html` — Dedicated `£40/hr` Individual & Reformer studio tuition page highlighting published Monday daytime slots (`10:30–11:30`, `11:45–12:45`), 5-session bundle placeholder, and 1:1 appointment request dummy form.
-- `css/styles.css` — Mobile-first responsive stylesheet (`360px–1440px`) using self-hosted `Newsreader` & `Outfit` variable fonts, WCAG AA high-contrast palette (`#F7F5F0`, `#23423B`, `#A65338`, `#1E2523`), and solid opaque mobile action bar.
-- `js/main.js` — Zero-dependency client-side script handling `Escape`-accessible mobile navigation, live timetable filtering, block fee calculation, and accessible dummy form validation.
-- `favicon.svg` & `images/logo-mark.svg` — Custom geometric Granary arch & movement alignment SVG emblems.
-- `fonts/` — Self-hosted `newsreader-latin.woff2`, `newsreader-latin-italic.woff2`, and `outfit-latin.woff2` (zero external font calls).
-- `PITCH.md` — Walk-in pitch script, 2010 WordPress audit comparison, 3-tap mobile demo flow, objection handlers, and `[...]` launch checklist.
+- **Asymmetric Architectural Editorial Masthead** — Compartmentalised drawing-sheet header with `1px` hairline vertical and horizontal rules (`[Arch Seal + THE PILATES STUDIO YARM]` | `[THE GRANARY · 17A HIGH ST · EST. 2010]` | `[I. Studio · II. Mat Schedule · III. Reformer]` | `[07702 300960 + Book Block]`).
+- **Panoramic Granary Stage + Overlapping Vellum Sheet (`index.html`)** — Full-width sweeping `21:9` studio stage (`images/hero.jpg`) with lower-right illustrative rail caption, overlapping off-center vellum paper folio (`£9.00/class` half-term mat blocks & `£40.00/hr` 1:1/Reformer tuition), and a 4-column **Granary Week-at-a-Glance** schedule ribbon (`MONDAY`–`THURSDAY`).
+- **"Which Practice Suits Your Body?" Interactive Sanctuary Guide (`index.html`)** — Four keyboard-accessible movement pathway selectors recommending exact Granary sessions with 1-click `?level=` pre-filtered jumps into `timetable-booking.html`.
+- **Interactive Weekly Timetable & Half-Term Block Booking (`timetable-booking.html`)** — Level filters (`All`, `Beginners`, `Improvers`, `Functional / Osteoporosis`, `Power`, `Intermediate/Adv`), illustrative demo availability tags, live half-term block fee calculator (`8 weeks = £72.00`), and accessible Half-Term Block Booking / Waiting List dummy form.
+- **1:1 & Reformer Apparatus Monograph (`reformer-tuition.html`)** — Dedicated `£40.00/hr` private studio plate (`images/feature.jpg`), published Monday daytime slots (`10:30–11:30`, `11:45–12:45`), 5-session bundle placeholder, and accessible 1:1 appointment request dummy form.
+- **Self-Hosted Typography & WCAG AA+ Palette** — Self-hosted `Newsreader` & `Outfit` variable WOFF2 fonts (`fonts/`), Sunlit Chalk Linen `#FAF8F4`, Warm Travertine Stone `#EFECE4`, Deep Eucalyptus `#1E352F`, Terracotta Clay `#9E4A33`, zero external network requests, and a 100% opaque sticky mobile bottom dock.
 
 ## Preview Locally
-
-Open `index.html` directly in any modern browser or serve locally:
 
 ```bash
 python3 -m http.server 8080
