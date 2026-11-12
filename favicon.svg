@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="The Pilates Studio Yarm emblem">
+  <rect width="64" height="64" rx="14" fill="#23423B"/>
+  <path d="M18 48V29c0-7.732 6.268-14 14-14s14 6.268 14 14v19" fill="none" stroke="#F7F5F0" stroke-width="2.75" stroke-linecap="round"/>
+  <path d="M24 48c0-9.5 16-11.5 16-21 0-4.4-3.6-7.5-8-7.5s-8 3.1-8 7.5" fill="none" stroke="#D8E4DF" stroke-width="2.25" stroke-linecap="round"/>
+  <circle cx="32" cy="25" r="3.2" fill="#D98266"/>
+  <line x1="14" y1="48" x2="50" y2="48" stroke="#F7F5F0" stroke-width="2.25" stroke-linecap="round"/>
+</svg>

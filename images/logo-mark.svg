@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" role="img" aria-label="The Pilates Studio Yarm Granary mark">
+  <rect x="2" y="2" width="68" height="68" rx="18" fill="#23423B"/>
+  <rect x="6.5" y="6.5" width="59" height="59" rx="13.5" fill="none" stroke="#537A70" stroke-width="1.2"/>
+  <path d="M21 53V32c0-8.284 6.716-15 15-15s15 6.716 15 15v21" fill="none" stroke="#F7F5F0" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M27.5 53c0-10.5 17-12.5 17-22.5 0-4.7-3.8-8.2-8.5-8.2s-8.5 3.5-8.5 8.2" fill="none" stroke="#D8E4DF" stroke-width="2.1" stroke-linecap="round"/>
+  <circle cx="36" cy="28" r="3.5" fill="#D98266"/>
+  <line x1="17" y1="53" x2="55" y2="53" stroke="#F7F5F0" stroke-width="2.4" stroke-linecap="round"/>
+</svg>
