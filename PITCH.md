@@ -62,3 +62,23 @@ Before switching `thepilatesstudioyarm.co.uk` live, confirm and replace every `.
 - [ ] `[Additional 1:1 appointment times – owner to confirm]` — Preferred Tuesday–Friday daytime/evening windows for by-appointment 1:1 & Reformer tuition (`reformer-tuition.html`).
 - [ ] `[By appointment – check availability]` & `[Demo status: ...]` — Replace illustrative demo capacity tags on `timetable-booking.html` with actual current mat space availability for each Monday–Thursday class.
 - [ ] Replace `images/hero.jpg` and `images/feature.jpg` with authentic photography of The Granary studio and Reformer apparatus, and remove the concept banner / `noindex` meta tag upon client sign-off.
+
+---
+
+## Set D — The Term Card (`/d/`)
+
+- **Live Concept URL:** https://tedotedo.github.io/pilates-studio-yarm-demo/d/
+- **What it is:** The week at a glance on one quiet printed-style card, using the published Monday–Thursday timetable and £9.00 / £72.00 block pricing.
+- **Reach it from any page:** tap **D** in the Concept switcher in the top banner.
+
+### 3-Tap Phone Demo (Set D)
+1. Tap the **Beginners** filter: the other classes fade back.
+2. Tap **Monday 18:15 Beginners**: the reserve panel opens with the 8-week £72.00 block.
+3. Tap a class with empty dots (for example **Monday 19:30 Improvers**): the same panel becomes **Join the waiting list**.
+
+### One-Line Pitch
+> *"Your whole term on one card, and a full class turns into a waiting list instead of a text message."*
+
+### Know Before You Show
+- The dots showing places left are illustrative demo status. First-visit directions, what to wear and the studio note are placeholders.
+- Demo only: no form sends anything, and unknown details stay as bracketed `[...]` placeholders for the owner to confirm.

@@ -18,3 +18,9 @@ Independent static concept website prepared by **Mark Aszkenasy** for **The Pila
 ```bash
 python3 -m http.server 8080
 ```
+
+## Set D — The Term Card
+
+- `d/index.html`, `d/css/styles.css`, `d/js/app.js` — The week at a glance on one quiet printed-style card, using the published Monday–Thursday timetable and £9.00 / £72.00 block pricing.
+- Live at https://tedotedo.github.io/pilates-studio-yarm-demo/d/. Reuses the root `fonts/` and `images/`; same `noindex`, zero external requests and `.ph` placeholder rules as Sets A–C.
+- The dots showing places left are illustrative demo status. First-visit directions, what to wear and the studio note are placeholders.
