@@ -79,7 +79,19 @@
         </div>
 
         <div class="reformer-architectural-frame">
-          <figure class="reformer-plate-figure">
+          <figure
+            class="reformer-plate-figure is-lightbox-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge precision Pilates Reformer carriage photograph"
+            data-lightbox-src="images/feature.jpg"
+            data-lightbox-alt="Precision Pilates Reformer carriage with calibrated springs, footbar and padded platform inside a sunlit timber studio"
+            data-lightbox-caption="Plate 02 — Precision Reformer carriage, calibrated springs and footbar for £40.00/hr 1:1 tuition."
+            data-lightbox-cta="#reformer-enquiry"
+            data-lightbox-cta-label="Request 1:1 Appointment"
+          >
+            <span class="arch-img-badge">Illustrative image</span>
+            <span class="arch-zoom-pill" aria-hidden="true">Inspect Photo ⤢</span>
             <img
               src="images/feature.jpg"
               alt="Precision Pilates Reformer carriage with calibrated springs, footbar and padded platform inside a sunlit timber studio"
@@ -212,12 +224,79 @@
             </p>
           </article>
         </div>
+
+        <div class="arch-photo-diptych" aria-label="Granary apparatus and matwork detail plates">
+          <figure
+            class="editorial-figure is-lightbox-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge sunlit maple-wood Pilates Reformer loft photograph"
+            data-lightbox-src="images/detail-1.jpg"
+            data-lightbox-alt="Sunlit maple-wood Pilates Reformer positioned inside a converted brick-and-beam Granary loft"
+            data-lightbox-caption="Granary Apparatus Loft — Maple-wood Reformer set in converted brick-and-beam courtyard light."
+            data-lightbox-cta="#reformer-enquiry"
+            data-lightbox-cta-label="Request 1:1 Appointment"
+          >
+            <span class="arch-img-badge">Illustrative image</span>
+            <span class="arch-zoom-pill" aria-hidden="true">Inspect Photo ⤢</span>
+            <img
+              src="images/detail-1.jpg"
+              alt="Sunlit maple-wood Pilates Reformer positioned inside a converted brick-and-beam Granary loft"
+              width="1200"
+              height="896"
+              loading="lazy"
+            >
+            <figcaption>
+              Illustrative image — Maple-wood Reformer in converted brick-and-beam Granary loft daylight.
+            </figcaption>
+          </figure>
+
+          <figure
+            class="editorial-figure is-lightbox-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge oak floor Pilates mat, cork blocks and toning ball still-life photograph"
+            data-lightbox-src="images/detail-2.jpg"
+            data-lightbox-alt="Serene wide-plank oak studio floor still-life with rolled linen mat, natural cork alignment blocks and soft toning ball"
+            data-lightbox-caption="Bridge to Matwork — Rolled linen mat, cork alignment blocks and toning ball for £9.00/class half-term progression."
+            data-lightbox-cta="timetable-booking.html#booking-form"
+            data-lightbox-cta-label="Explore £9/Class Mat Blocks"
+          >
+            <span class="arch-img-badge">Illustrative image</span>
+            <span class="arch-zoom-pill" aria-hidden="true">Inspect Photo ⤢</span>
+            <img
+              src="images/detail-2.jpg"
+              alt="Serene wide-plank oak studio floor still-life with rolled linen mat, natural cork alignment blocks and soft toning ball"
+              width="1200"
+              height="896"
+              loading="lazy"
+            >
+            <figcaption>
+              Illustrative image — Wide-plank oak floor still-life with rolled linen mat, cork blocks &amp; toning ball.
+            </figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
     <!-- Request a 1:1 / Reformer Appointment Form -->
     <section id="reformer-enquiry" class="section section-stone" aria-labelledby="reformer-form-heading">
       <div class="container">
+        <div class="goal-preset-bar goal-preset-bar-standalone" role="region" aria-label="1-tap practice goal presets">
+          <span class="goal-preset-label">1-Tap Practice Goal (Pre-Fills Request):</span>
+          <div class="goal-preset-pills">
+            <button type="button" class="goal-preset-btn" data-goal-preset="beginner" aria-pressed="false">
+              🌿 Complete Beginner Mat (£9/class block)
+            </button>
+            <button type="button" class="goal-preset-btn" data-goal-preset="back4good" aria-pressed="false">
+              🦴 Back4Good® Low Back Care
+            </button>
+            <button type="button" class="goal-preset-btn" data-goal-preset="reformer" aria-pressed="false">
+              ✨ 1:1 Private Reformer (£40/hr)
+            </button>
+          </div>
+        </div>
+
         <div class="booking-layout">
           <aside class="calculator-card dark-surface" aria-label="1:1 appointment details">
             <span class="eyebrow">The Granary · 17A High Street</span>
@@ -364,7 +443,25 @@
     </div>
   </footer>
 
-  <!-- Solid Opaque Sticky Mobile Action Bar -->
+  <div class="micro-toast" id="micro-toast" role="status" aria-live="polite" hidden></div>
+
+  <dialog class="editorial-lightbox" id="photo-lightbox" aria-label="Studio photograph viewer">
+    <div class="lightbox-card">
+      <div class="lightbox-topbar">
+        <span class="lightbox-ill-tag">Illustrative image</span>
+        <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close photograph viewer">✕ Close</button>
+      </div>
+      <div class="lightbox-stage">
+        <img id="lightbox-img" src="images/feature.jpg" alt="" width="1200" height="896">
+      </div>
+      <div class="lightbox-meta">
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+        <a id="lightbox-cta" class="btn btn-primary btn-sm" href="#reformer-enquiry">Request 1:1 Appointment</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Frosted Glass Safe-Area Floating Mobile Action Bar -->
   <nav class="mobile-action-bar" aria-label="Quick studio actions">
     <a class="mobile-action-link" href="tel:07702300960">Call Studio</a>
     <a class="mobile-action-link" href="timetable-booking.html">Timetable</a>

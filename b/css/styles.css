@@ -137,13 +137,13 @@ a:hover {
   top: 0.75rem;
 }
 
-/* Top Concept Banner + Switcher */
+/* Top Concept Banner + Switcher (<= 84px at 390px, >= 40px pills) */
 .concept-banner {
   background-color: var(--bg-deep);
   color: var(--vellum);
-  font-size: 0.8rem;
-  line-height: 1.45;
-  padding: 0.45rem 0.85rem;
+  font-size: 0.73rem;
+  line-height: 1.26;
+  padding: 0.28rem 0.7rem;
   border-bottom: 1px solid var(--border-subtle);
   overflow-wrap: anywhere;
 }
@@ -152,18 +152,20 @@ a:hover {
   max-width: var(--container-max);
   margin: 0 auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  text-align: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  text-align: left;
 }
 
-@media (min-width: 920px) {
+@media (min-width: 760px) {
+  .concept-banner {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    padding: 0.36rem 1rem;
+  }
   .concept-banner-inner {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
     gap: 1rem;
   }
 }
@@ -171,20 +173,23 @@ a:hover {
 .concept-banner p {
   margin: 0;
   font-weight: 500;
-  letter-spacing: 0.015em;
+  letter-spacing: 0.01em;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 
 .concept-switcher {
   display: inline-flex;
   align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.35rem;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  gap: 0.22rem;
   flex-shrink: 0;
 }
 
 .concept-switcher-label {
-  font-size: 0.74rem;
+  display: none;
+  font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -192,18 +197,27 @@ a:hover {
   margin-right: 0.12rem;
 }
 
+@media (min-width: 640px) {
+  .concept-switcher-label {
+    display: inline;
+  }
+  .concept-switcher {
+    gap: 0.32rem;
+  }
+}
+
 .concept-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 42px;
-  min-height: 42px;
-  padding: 0 0.65rem;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0 0.5rem;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(243, 238, 229, 0.35);
-  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(243, 238, 229, 0.38);
+  background-color: rgba(255, 255, 255, 0.08);
   color: var(--vellum);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   text-decoration: none;
   line-height: 1;
@@ -1288,22 +1302,34 @@ h2 em {
   margin: 0;
 }
 
-/* Floating Pill Dock */
+/* Frosted Glass Safe-Area Floating Pill Dock + Auto-Clearance */
 .floating-pill-dock {
   position: fixed;
-  left: 50%;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
   bottom: calc(0.65rem + env(safe-area-inset-bottom, 0px));
-  transform: translateX(-50%);
+  transform: translateY(0);
+  opacity: 1;
   width: min(calc(100% - 1.25rem), 420px);
   z-index: 1400;
-  background-color: rgba(11, 21, 18, 0.95);
-  border: 1px solid var(--border-strong);
+  background-color: rgba(11, 21, 18, 0.96);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(243, 238, 229, 0.24);
   border-radius: var(--radius-pill);
   padding: 0.35rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.3rem;
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 16px 38px rgba(0, 0, 0, 0.55);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.24s ease;
+}
+
+.floating-pill-dock.is-dock-hidden {
+  transform: translateY(130%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 @media (min-width: 960px) {
@@ -1355,4 +1381,486 @@ h2 em {
     flex-wrap: wrap;
     justify-content: center;
   }
+}
+
+
+/* ==========================================================================
+   Agency Excellence Upgrades — View Transitions, Scroll Progress, 1-Tap Presets,
+   4-Frame Lookbook Rail (01 / 04), <dialog> Lightbox, Micro-Toast & Receipt Ticket
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+.scroll-progress-rail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 2.5px;
+  background: linear-gradient(90deg, var(--terracotta) 0%, var(--terracotta-glow) 100%);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  pointer-events: none;
+  z-index: 30;
+  transition: transform 0.08s linear;
+}
+
+.is-lightbox-trigger {
+  cursor: zoom-in;
+}
+
+/* 1-Tap Practice Goal Quick Presets */
+.b-preset-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.85rem;
+  padding: 0.85rem 1.05rem;
+  margin-bottom: 1rem;
+  background-color: var(--bg-deep);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+}
+
+.b-preset-kicker {
+  font-size: 0.73rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--terracotta-glow);
+  flex-shrink: 0;
+}
+
+.b-preset-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  flex: 1 1 auto;
+}
+
+.b-preset-chip {
+  appearance: none;
+  min-height: 40px;
+  padding: 0.42rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  background-color: var(--surface-card);
+  color: var(--vellum);
+  font-family: var(--font-sans);
+  font-size: 0.81rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+}
+
+.b-preset-chip:hover {
+  border-color: var(--terracotta-glow);
+}
+
+.b-preset-chip[aria-pressed="true"] {
+  background-color: var(--terracotta-cta);
+  border-color: var(--terracotta-glow);
+  color: #FFFFFF;
+}
+
+.b-preset-jump {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--vellum);
+  text-decoration: none;
+  padding: 0.36rem 0.78rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--terracotta-glow);
+  background-color: rgba(201, 106, 75, 0.22);
+}
+
+.b-preset-jump[hidden] {
+  display: none;
+}
+
+.reel-card.is-preset-match {
+  border-color: var(--terracotta-glow);
+  box-shadow: 0 0 0 2px rgba(230, 143, 115, 0.42), 0 14px 32px rgba(0, 0, 0, 0.35);
+}
+
+/* 4-Frame Sanctuary Lookbook Rail (01 / 04 + Arrows + Dots) */
+.lookbook-header-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.35rem;
+}
+
+.lookbook-header-bar h2 {
+  font-size: clamp(1.75rem, 3.3vw, 2.65rem);
+  margin: 0;
+}
+
+.lookbook-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lookbook-counter-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 0.85rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--ink-dark);
+  color: var(--vellum);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+}
+
+.lookbook-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--ink-dark);
+  background-color: var(--vellum-card);
+  color: var(--ink-dark);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.lookbook-arrow:hover {
+  background-color: var(--ink-dark);
+  color: var(--vellum);
+}
+
+.lookbook-snap-rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(min(86vw, 320px), 520px);
+  gap: 1.15rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 0.75rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink-dark) var(--vellum);
+}
+
+.lookbook-frame {
+  margin: 0;
+  scroll-snap-align: start;
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--vellum-border);
+  background-color: var(--vellum-card);
+  box-shadow: 0 14px 32px rgba(17, 31, 27, 0.09);
+  display: flex;
+  flex-direction: column;
+}
+
+.lookbook-frame img {
+  width: 100%;
+  aspect-ratio: 16 / 11;
+  object-fit: cover;
+}
+
+.lookbook-zoom-tag {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  z-index: 3;
+  background-color: rgba(250, 247, 241, 0.92);
+  color: var(--ink-dark);
+  border: 1px solid var(--vellum-border);
+  padding: 0.24rem 0.65rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.lookbook-frame figcaption {
+  padding: 0.85rem 1.05rem;
+  font-size: 0.86rem;
+  color: var(--ink-muted);
+  border-top: 1px solid var(--vellum-border);
+  background-color: var(--vellum-card);
+}
+
+.lookbook-frame figcaption strong {
+  color: var(--ink-dark);
+}
+
+.lookbook-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: 0.95rem 0 2rem;
+}
+
+.lookbook-dot {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  padding: 0;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--ink-dark);
+  background-color: transparent;
+  cursor: pointer;
+  transition: width 0.22s ease, background-color 0.22s ease;
+}
+
+.lookbook-dot.is-active {
+  width: 30px;
+  background-color: var(--terracotta-cta);
+  border-color: var(--terracotta-cta);
+}
+
+.vellum-copy-wide {
+  max-width: 56rem;
+}
+
+/* Native <dialog> Photo Lightbox */
+.sanctuary-lightbox {
+  border: none;
+  padding: 0;
+  max-width: min(94vw, 56rem);
+  width: 100%;
+  background: transparent;
+  color: var(--vellum);
+}
+
+.sanctuary-lightbox::backdrop {
+  background: rgba(8, 15, 13, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.lightbox-card {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.65);
+}
+
+.lightbox-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 1.1rem;
+  background-color: var(--bg-deep);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.lightbox-ill-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--vellum);
+  border: 1px solid rgba(243, 238, 229, 0.3);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+}
+
+.lightbox-close {
+  appearance: none;
+  min-height: 40px;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  background-color: var(--surface-elevated);
+  color: var(--vellum);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.lightbox-stage {
+  background-color: #070E0C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 64vh;
+}
+
+.lightbox-stage img {
+  width: 100%;
+  max-height: 64vh;
+  object-fit: contain;
+}
+
+.lightbox-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  padding: 0.95rem 1.15rem;
+  background-color: var(--surface-card);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.lightbox-caption {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--vellum);
+  flex: 1 1 16rem;
+}
+
+/* Micro-Toast */
+.micro-toast {
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  bottom: calc(5.1rem + env(safe-area-inset-bottom, 0px));
+  z-index: 1550;
+  width: max-content;
+  max-width: min(92vw, 30rem);
+  background-color: rgba(11, 21, 18, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--vellum);
+  border: 1px solid var(--terracotta-glow);
+  border-radius: var(--radius-pill);
+  padding: 0.58rem 1.05rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+@media (min-width: 960px) {
+  .micro-toast {
+    bottom: 1.5rem;
+  }
+}
+
+.micro-toast[hidden] {
+  display: none;
+}
+
+/* Live Digital Enquiry Ticket inside #pb-confirmation */
+.demo-verbatim-notice {
+  margin: 0 0 0.85rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(117, 192, 161, 0.35);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.owner-receipt-ticket {
+  background-color: var(--bg-deep);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  padding: 0.95rem 1.05rem;
+  color: var(--vellum);
+  font-weight: 400;
+}
+
+.ticket-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--border-strong);
+}
+
+.ticket-title {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--terracotta-glow);
+}
+
+.ticket-ref {
+  font-size: 0.74rem;
+  font-weight: 700;
+  background-color: var(--surface-elevated);
+  color: var(--vellum);
+  padding: 0.16rem 0.55rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+}
+
+.ticket-dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.55rem 1rem;
+  font-size: 0.85rem;
+}
+
+@media (min-width: 560px) {
+  .ticket-dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ticket-dl dt {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+}
+
+.ticket-dl dd {
+  margin: 0.12rem 0 0;
+  font-weight: 600;
+  color: var(--vellum);
+  overflow-wrap: anywhere;
+}
+
+.ticket-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.ticket-btn {
+  appearance: none;
+  min-height: 38px;
+  padding: 0.38rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.77rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid var(--terracotta-cta);
+  background-color: var(--terracotta-cta);
+  color: #FFFFFF;
+}
+
+.ticket-btn-secondary {
+  background-color: transparent;
+  border-color: var(--border-strong);
+  color: var(--vellum);
 }

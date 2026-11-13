@@ -93,6 +93,57 @@
             <span class="ph status-open">[Demo status: 3 places left]</span> / <span class="ph status-full">[Demo status: Full – Join Waiting List]</span>
           </div>
         </div>
+
+        <div class="arch-photo-diptych arch-photo-diptych-compact" aria-label="Granary matwork studio plates">
+          <figure
+            class="editorial-figure is-lightbox-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge sunlit timber-beamed Granary Pilates loft photograph"
+            data-lightbox-src="images/hero.jpg"
+            data-lightbox-alt="Sunlit timber-beamed Granary Pilates loft with alignment mats and apparatus bathed in calm daylight"
+            data-lightbox-caption="The Granary Mat Sanctuary — Small-group Monday–Thursday half-term blocks (£9.00/class) off 17A High Street."
+            data-lightbox-cta="#booking-form"
+            data-lightbox-cta-label="Jump to Block Booking"
+          >
+            <span class="arch-img-badge">Illustrative image</span>
+            <span class="arch-zoom-pill" aria-hidden="true">Inspect Photo ⤢</span>
+            <img
+              src="images/hero.jpg"
+              alt="Sunlit timber-beamed Granary Pilates loft with alignment mats and apparatus bathed in calm daylight"
+              width="1440"
+              height="803"
+              fetchpriority="high"
+            >
+            <figcaption>
+              Illustrative image — Sunlit timber-beamed Granary matwork loft at 17A High Street, Yarm.
+            </figcaption>
+          </figure>
+
+          <figure
+            class="editorial-figure is-lightbox-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge oak floor Pilates mat, cork blocks and toning ball still-life photograph"
+            data-lightbox-src="images/detail-2.jpg"
+            data-lightbox-alt="Serene wide-plank oak studio floor still-life with rolled linen mat, natural cork alignment blocks and soft toning ball"
+            data-lightbox-caption="Matwork Equipment — Rolled linen mat, cork alignment blocks and toning ball ready for progressive half-term practice."
+            data-lightbox-cta="#booking-form"
+            data-lightbox-cta-label="Jump to Block Booking"
+          >
+            <span class="arch-img-badge">Illustrative image</span>
+            <span class="arch-zoom-pill" aria-hidden="true">Inspect Photo ⤢</span>
+            <img
+              src="images/detail-2.jpg"
+              alt="Serene wide-plank oak studio floor still-life with rolled linen mat, natural cork alignment blocks and soft toning ball"
+              width="1200"
+              height="896"
+            >
+            <figcaption>
+              Illustrative image — Wide-plank oak floor still-life with rolled linen mat, cork blocks &amp; toning ball.
+            </figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -106,6 +157,21 @@
           </div>
         </div>
 
+        <div class="goal-preset-bar goal-preset-bar-standalone" role="region" aria-label="1-tap practice goal presets">
+          <span class="goal-preset-label">1-Tap Practice Goal (Highlights &amp; Pre-Fills Form):</span>
+          <div class="goal-preset-pills">
+            <button type="button" class="goal-preset-btn" data-goal-preset="beginner" aria-pressed="false">
+              🌿 Complete Beginner Mat (£9/class block)
+            </button>
+            <button type="button" class="goal-preset-btn" data-goal-preset="back4good" aria-pressed="false">
+              🦴 Back4Good® Low Back Care
+            </button>
+            <button type="button" class="goal-preset-btn" data-goal-preset="reformer" aria-pressed="false">
+              ✨ 1:1 Private Reformer (£40/hr)
+            </button>
+          </div>
+        </div>
+
         <div class="filter-toolbar" role="region" aria-label="Class level filter">
           <span class="filter-label">Select Class Level</span>
           <div class="filter-buttons">
@@ -115,6 +181,7 @@
             <button type="button" class="filter-btn" data-filter="functional" aria-pressed="false">Functional / Osteoporosis</button>
             <button type="button" class="filter-btn" data-filter="power" aria-pressed="false">Power</button>
             <button type="button" class="filter-btn" data-filter="intermediate" aria-pressed="false">Intermediate/Adv</button>
+            <button type="button" class="filter-btn" data-filter="reformer" aria-pressed="false">1:1 &amp; Reformer (£40/hr)</button>
           </div>
           <p id="filter-count" class="filter-count" aria-live="polite">
             Showing all 12 published Monday–Thursday studio slots (10 group classes + 2 Monday 1:1/Reformer slots).
@@ -125,7 +192,7 @@
         <div class="timetable-day-group">
           <h3 class="day-heading">Monday</h3>
           <div class="slot-stack">
-            <article class="class-slot-card" data-levels="reformer">
+            <article class="class-slot-card" data-levels="reformer" data-preset-tags="reformer,back4good">
               <div class="slot-time-badge">10:30–11:30</div>
               <div class="slot-details">
                 <h4>Reformer / Individual Tuition</h4>
@@ -135,11 +202,18 @@
                 </div>
               </div>
               <div class="slot-action">
-                <a class="btn btn-outline btn-sm" href="reformer-tuition.html#reformer-enquiry">Request 1:1 Slot</a>
+                <button
+                  type="button"
+                  class="btn btn-outline btn-sm"
+                  data-select-class="mon-1030-reformer"
+                  data-select-mode="reformer"
+                >
+                  Select 1:1 (£40/hr)
+                </button>
               </div>
             </article>
 
-            <article class="class-slot-card" data-levels="reformer">
+            <article class="class-slot-card" data-levels="reformer" data-preset-tags="reformer,back4good">
               <div class="slot-time-badge">11:45–12:45</div>
               <div class="slot-details">
                 <h4>Reformer / Individual Tuition</h4>
@@ -149,11 +223,18 @@
                 </div>
               </div>
               <div class="slot-action">
-                <a class="btn btn-outline btn-sm" href="reformer-tuition.html#reformer-enquiry">Request 1:1 Slot</a>
+                <button
+                  type="button"
+                  class="btn btn-outline btn-sm"
+                  data-select-class="mon-1145-reformer"
+                  data-select-mode="reformer"
+                >
+                  Select 1:1 (£40/hr)
+                </button>
               </div>
             </article>
 
-            <article class="class-slot-card" data-levels="beginners">
+            <article class="class-slot-card" data-levels="beginners" data-preset-tags="beginner,back4good">
               <div class="slot-time-badge">18:15–19:15</div>
               <div class="slot-details">
                 <h4>Beginners Pilates</h4>
@@ -249,7 +330,7 @@
         <div class="timetable-day-group">
           <h3 class="day-heading">Wednesday</h3>
           <div class="slot-stack">
-            <article class="class-slot-card" data-levels="functional">
+            <article class="class-slot-card" data-levels="functional" data-preset-tags="back4good">
               <div class="slot-time-badge">09:30–10:30</div>
               <div class="slot-details">
                 <h4>Functional Pilates (Osteoporosis friendly)</h4>
@@ -291,7 +372,7 @@
               </div>
             </article>
 
-            <article class="class-slot-card" data-levels="beginners,improvers">
+            <article class="class-slot-card" data-levels="beginners,improvers" data-preset-tags="beginner,back4good">
               <div class="slot-time-badge">18:00–19:00</div>
               <div class="slot-details">
                 <h4>Beginners / Improvers Pilates</h4>
@@ -339,7 +420,7 @@
               </div>
             </article>
 
-            <article class="class-slot-card" data-levels="improvers">
+            <article class="class-slot-card" data-levels="improvers" data-preset-tags="back4good">
               <div class="slot-time-badge">10:45–11:45</div>
               <div class="slot-details">
                 <h4>Improvers Pilates</h4>
@@ -433,7 +514,7 @@
             <form data-demo-form novalidate>
               <div class="form-grid">
                 <div class="form-field">
-                  <label for="booking-class">Preferred Weekly Class <span class="required-mark" aria-hidden="true">*</span></label>
+                  <label for="booking-class">Preferred Weekly Class or 1:1 Slot <span class="required-mark" aria-hidden="true">*</span></label>
                   <select id="booking-class" name="booking_class" required aria-describedby="err-booking-class">
                     <option value="mon-1815-beginners">Monday 18:15–19:15 — Beginners Pilates ([Demo status: 3 places left])</option>
                     <option value="mon-1930-improvers">Monday 19:30–20:30 — Improvers Pilates ([Demo status: Full – Join Waiting List])</option>
@@ -445,6 +526,8 @@
                     <option value="thu-0930-intadv">Thursday 09:30–10:30 — Intermediate / Advanced Pilates ([Demo status: Full – Join Waiting List])</option>
                     <option value="thu-1045-improvers">Thursday 10:45–11:45 — Improvers Pilates ([Demo status: 3 places left])</option>
                     <option value="thu-1815-intadv">Thursday 18:15–19:15 — Intermediate / Advanced Pilates ([Demo status: 3 places left])</option>
+                    <option value="mon-1030-reformer">Monday 10:30–11:30 — 1:1 &amp; Reformer Tuition (£40.00/hr by appointment)</option>
+                    <option value="mon-1145-reformer">Monday 11:45–12:45 — 1:1 &amp; Reformer Tuition (£40.00/hr by appointment)</option>
                   </select>
                   <span id="err-booking-class" class="field-error" hidden></span>
                 </div>
@@ -454,6 +537,7 @@
                   <select id="booking-mode" name="booking_mode" required aria-describedby="err-booking-mode">
                     <option value="block">Reserve Half-Term Block (£9.00/class — £72.00 for 8 weeks)</option>
                     <option value="waitlist">Join Priority Waiting List (No payment until a space opens)</option>
+                    <option value="reformer">Request 1:1 / Reformer Session (£40.00 per hour)</option>
                   </select>
                   <span id="err-booking-mode" class="field-error" hidden></span>
                 </div>
@@ -570,7 +654,25 @@
     </div>
   </footer>
 
-  <!-- Solid Opaque Sticky Mobile Action Bar -->
+  <div class="micro-toast" id="micro-toast" role="status" aria-live="polite" hidden></div>
+
+  <dialog class="editorial-lightbox" id="photo-lightbox" aria-label="Studio photograph viewer">
+    <div class="lightbox-card">
+      <div class="lightbox-topbar">
+        <span class="lightbox-ill-tag">Illustrative image</span>
+        <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close photograph viewer">✕ Close</button>
+      </div>
+      <div class="lightbox-stage">
+        <img id="lightbox-img" src="images/hero.jpg" alt="" width="1200" height="896">
+      </div>
+      <div class="lightbox-meta">
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+        <a id="lightbox-cta" class="btn btn-primary btn-sm" href="#booking-form">Jump to Booking</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Frosted Glass Safe-Area Floating Mobile Action Bar -->
   <nav class="mobile-action-bar" aria-label="Quick studio actions">
     <a class="mobile-action-link" href="tel:07702300960">Call Studio</a>
     <a class="mobile-action-link action-accent" href="#booking-form">Book Block</a>

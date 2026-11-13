@@ -27,6 +27,7 @@
 
   <!-- Sunlit App Top Bar + Sticky Pill-Tab Navigation -->
   <header class="app-header">
+    <div class="scroll-progress-rail" id="scroll-progress-rail" aria-hidden="true"></div>
     <div class="container app-brand-row">
       <a class="app-brand" href="#studio">
         <img class="app-logo" src="../images/logo-mark.svg" alt="" width="36" height="36">
@@ -99,8 +100,19 @@
             </div>
           </div>
 
-          <figure class="app-photo-card">
+          <figure
+            class="app-photo-card hero-strip-card is-lightbox-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge illustrative Granary studio loft photograph"
+            data-lightbox-src="../images/hero.jpg"
+            data-lightbox-alt="Sunlit timber-beamed Granary Pilates loft with mats and calm courtyard daylight"
+            data-lightbox-caption="The Granary Loft — Sunlit timber-beamed Pilates sanctuary off 17A High Street, Yarm."
+            data-lightbox-cta="#book"
+            data-lightbox-cta-label="Start 3-Step Booking"
+          >
             <span class="img-badge">Illustrative image</span>
+            <span class="img-zoom-chip" aria-hidden="true">Enlarge ⤢</span>
             <img
               src="../images/hero.jpg"
               alt="Sunlit timber-beamed Granary Pilates loft with mats and calm courtyard daylight"
@@ -129,6 +141,23 @@
           </div>
         </div>
 
+        <!-- 1-Tap Practice Goal Presets -->
+        <div class="c-preset-bar" role="region" aria-label="1-tap practice goal presets">
+          <span class="c-preset-label">1-Tap Practice Goal:</span>
+          <div class="c-preset-pills">
+            <button type="button" class="c-preset-btn" data-goal-preset="beginner" aria-pressed="false">
+              🌿 Complete Beginner Mat (£9/class block)
+            </button>
+            <button type="button" class="c-preset-btn" data-goal-preset="back4good" aria-pressed="false">
+              🦴 Back4Good® Low Back Care
+            </button>
+            <button type="button" class="c-preset-btn" data-goal-preset="reformer" aria-pressed="false">
+              ✨ 1:1 Private Reformer (£40/hr)
+            </button>
+          </div>
+          <a class="c-preset-jump" id="c-preset-jump" href="#book" hidden>Open Pre-Filled Stepper ↓</a>
+        </div>
+
         <!-- Accessible Segmented Day Tabs -->
         <div class="day-segmented" role="tablist" aria-label="Select studio day">
           <button type="button" class="day-seg-btn" role="tab" id="dtab-mon" aria-selected="true" data-day="mon" tabindex="0">Mon (4)</button>
@@ -144,7 +173,7 @@
 
         <div class="schedule-app-list" id="schedule-list">
           <!-- MONDAY -->
-          <article class="sched-row" data-sched-day="mon">
+          <article class="sched-row" data-sched-day="mon" data-preset-tags="reformer,back4good">
             <div class="sched-time-col">
               <span class="sched-day-tag">Monday</span>
               <strong class="sched-time">10:30–11:30</strong>
@@ -161,7 +190,7 @@
             </div>
           </article>
 
-          <article class="sched-row" data-sched-day="mon">
+          <article class="sched-row" data-sched-day="mon" data-preset-tags="reformer,back4good">
             <div class="sched-time-col">
               <span class="sched-day-tag">Monday</span>
               <strong class="sched-time">11:45–12:45</strong>
@@ -178,7 +207,7 @@
             </div>
           </article>
 
-          <article class="sched-row" data-sched-day="mon">
+          <article class="sched-row" data-sched-day="mon" data-preset-tags="beginner,back4good">
             <div class="sched-time-col">
               <span class="sched-day-tag">Monday</span>
               <strong class="sched-time">18:15–19:15</strong>
@@ -248,7 +277,7 @@
           </article>
 
           <!-- WEDNESDAY -->
-          <article class="sched-row" data-sched-day="wed" hidden>
+          <article class="sched-row" data-sched-day="wed" data-preset-tags="back4good" hidden>
             <div class="sched-time-col">
               <span class="sched-day-tag">Wednesday</span>
               <strong class="sched-time">09:30–10:30</strong>
@@ -282,7 +311,7 @@
             </div>
           </article>
 
-          <article class="sched-row" data-sched-day="wed" hidden>
+          <article class="sched-row" data-sched-day="wed" data-preset-tags="beginner,back4good" hidden>
             <div class="sched-time-col">
               <span class="sched-day-tag">Wednesday</span>
               <strong class="sched-time">18:00–19:00</strong>
@@ -317,7 +346,7 @@
             </div>
           </article>
 
-          <article class="sched-row" data-sched-day="thu" hidden>
+          <article class="sched-row" data-sched-day="thu" data-preset-tags="back4good" hidden>
             <div class="sched-time-col">
               <span class="sched-day-tag">Thursday</span>
               <strong class="sched-time">10:45–11:45</strong>
@@ -354,17 +383,29 @@
       </div>
     </section>
 
-    <!-- Section 3: 1:1 Reformer & Back4Good® Apparatus Card -->
+    <!-- Section 3: 1:1 Reformer & Back4Good® Apparatus Card + Studio Detail Cards -->
     <section id="reformer" class="app-section" aria-labelledby="reformer-heading">
       <div class="container">
         <div class="reformer-app-card">
-          <figure class="app-photo-card">
+          <figure
+            class="app-photo-card is-lightbox-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge illustrative Reformer apparatus photograph"
+            data-lightbox-src="../images/feature.jpg"
+            data-lightbox-alt="Precision Pilates Reformer apparatus carriage with springs inside a calm timber studio"
+            data-lightbox-caption="Calibrated Apparatus — Precision Reformer carriage & springs for £40.00/hr 1:1 studio tuition."
+            data-lightbox-cta="#book"
+            data-lightbox-cta-label="Book 1:1 Reformer (£40/hr)"
+          >
             <span class="img-badge">Illustrative image</span>
+            <span class="img-zoom-chip" aria-hidden="true">Enlarge ⤢</span>
             <img
               src="../images/feature.jpg"
               alt="Precision Pilates Reformer apparatus carriage with springs inside a calm timber studio"
               width="1200"
               height="896"
+              loading="lazy"
             >
             <figcaption>
               Illustrative image — Reformer apparatus concept visual for 1:1 studio tuition at The Granary.
@@ -392,6 +433,58 @@
               <a class="btn btn-sage-outline" href="tel:07702300960">Call 07702 300960</a>
             </div>
           </div>
+        </div>
+
+        <div class="c-detail-photo-grid" aria-label="Granary studio detail cards">
+          <figure
+            class="app-photo-card is-lightbox-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge sunlit maple-wood Pilates Reformer loft photograph"
+            data-lightbox-src="../images/detail-1.jpg"
+            data-lightbox-alt="Sunlit maple-wood Pilates Reformer positioned inside a converted brick-and-beam Granary loft"
+            data-lightbox-caption="Granary Courtyard Loft — Maple-wood Reformer set in converted brick-and-beam daylight."
+            data-lightbox-cta="#book"
+            data-lightbox-cta-label="Book 1:1 Reformer (£40/hr)"
+          >
+            <span class="img-badge">Illustrative image</span>
+            <span class="img-zoom-chip" aria-hidden="true">Enlarge ⤢</span>
+            <img
+              src="../images/detail-1.jpg"
+              alt="Sunlit maple-wood Pilates Reformer positioned inside a converted brick-and-beam Granary loft"
+              width="1200"
+              height="896"
+              loading="lazy"
+            >
+            <figcaption>
+              Illustrative image — Sunlit maple-wood Reformer in converted brick-and-beam Granary loft.
+            </figcaption>
+          </figure>
+
+          <figure
+            class="app-photo-card is-lightbox-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge oak floor Pilates mat, cork blocks and toning ball still-life photograph"
+            data-lightbox-src="../images/detail-2.jpg"
+            data-lightbox-alt="Serene wide-plank oak studio floor still-life with rolled linen mat, natural cork alignment blocks and soft toning ball"
+            data-lightbox-caption="Matwork Craft — Rolled linen mat, cork alignment blocks & soft toning ball for £9.00/class half-term blocks."
+            data-lightbox-cta="#book"
+            data-lightbox-cta-label="Reserve £9/Class Mat Block"
+          >
+            <span class="img-badge">Illustrative image</span>
+            <span class="img-zoom-chip" aria-hidden="true">Enlarge ⤢</span>
+            <img
+              src="../images/detail-2.jpg"
+              alt="Serene wide-plank oak studio floor still-life with rolled linen mat, natural cork alignment blocks and soft toning ball"
+              width="1200"
+              height="896"
+              loading="lazy"
+            >
+            <figcaption>
+              Illustrative image — Wide-plank oak floor still-life with rolled linen mat, cork blocks &amp; toning ball.
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -623,7 +716,25 @@
     </div>
   </footer>
 
-  <!-- Mobile Bottom App Bar -->
+  <div class="micro-toast" id="micro-toast" role="status" aria-live="polite" hidden></div>
+
+  <dialog class="app-lightbox" id="photo-lightbox" aria-label="Studio photograph viewer">
+    <div class="lightbox-card">
+      <div class="lightbox-topbar">
+        <span class="lightbox-ill-tag">Illustrative image</span>
+        <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close photograph viewer">✕ Close</button>
+      </div>
+      <div class="lightbox-stage">
+        <img id="lightbox-img" src="../images/hero.jpg" alt="" width="1200" height="896">
+      </div>
+      <div class="lightbox-meta">
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+        <a id="lightbox-cta" class="btn btn-terracotta btn-sm" href="#book">Start 3-Step Booking</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Frosted Glass Safe-Area Mobile Bottom App Bar -->
   <nav class="mobile-app-dock" aria-label="Quick studio navigation">
     <a class="app-dock-item" href="tel:07702300960">Call</a>
     <a class="app-dock-item" href="#timetable">Timetable</a>

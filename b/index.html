@@ -26,6 +26,7 @@
   </div>
 
   <header class="sanctuary-header">
+    <div class="scroll-progress-rail" id="scroll-progress-rail" aria-hidden="true"></div>
     <div class="container header-bar">
       <a class="brand-cluster" href="index.html">
         <img class="brand-emblem" src="../images/logo-mark.svg" alt="" width="38" height="38">
@@ -37,7 +38,7 @@
 
       <nav class="desktop-nav" aria-label="Primary studio sections">
         <a class="desktop-nav-link" href="#movement-reel">Movement Reel</a>
-        <a class="desktop-nav-link" href="#reformer-vellum">1:1 Reformer</a>
+        <a class="desktop-nav-link" href="#reformer-vellum">Lookbook &amp; 1:1</a>
         <a class="desktop-nav-link" href="#sanctuary-booking">Reserve</a>
         <a class="desktop-nav-link" href="#granary-location">Courtyard</a>
       </nav>
@@ -54,7 +55,17 @@
     <section class="hero-stage" aria-label="The Granary Studio Sanctuary">
       <div class="container">
         <div class="hero-loft-card">
-          <figure class="hero-media">
+          <figure
+            class="hero-media is-lightbox-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge illustrative Granary loft photograph"
+            data-lightbox-src="../images/hero.jpg"
+            data-lightbox-alt="Calm timber-beamed Pilates loft studio at The Granary with alignment mats and natural courtyard light"
+            data-lightbox-caption="The Granary Sanctuary — Sunlit timber-beamed Pilates loft off 17A High Street, Yarm."
+            data-lightbox-cta="#sanctuary-booking"
+            data-lightbox-cta-label="Reserve Mat Block or 1:1"
+          >
             <span class="illustrative-badge">Illustrative image</span>
             <img
               src="../images/hero.jpg"
@@ -64,7 +75,7 @@
               fetchpriority="high"
             >
             <figcaption class="sr-caption">
-              Illustrative image — Granary loft studio concept off 17A High Street, Yarm.
+              Illustrative image — Granary loft studio concept off 17A High Street, Yarm (Tap to enlarge).
             </figcaption>
           </figure>
 
@@ -161,9 +172,27 @@
           </div>
         </div>
 
+        <!-- 1-Tap Practice Goal Quick Presets -->
+        <div class="b-preset-strip" role="region" aria-label="1-tap practice goal presets">
+          <span class="b-preset-kicker">1-Tap Goal Preset:</span>
+          <div class="b-preset-buttons">
+            <button type="button" class="b-preset-chip" data-goal-preset="beginner" aria-pressed="false">
+              🌿 Complete Beginner Mat (£9/class block)
+            </button>
+            <button type="button" class="b-preset-chip" data-goal-preset="back4good" aria-pressed="false">
+              🦴 Back4Good® Low Back Care
+            </button>
+            <button type="button" class="b-preset-chip" data-goal-preset="reformer" aria-pressed="false">
+              ✨ 1:1 Private Reformer (£40/hr)
+            </button>
+          </div>
+          <a class="b-preset-jump" id="b-preset-jump" href="#sanctuary-booking" hidden>Review Pre-Filled Form ↓</a>
+        </div>
+
         <!-- Interactive Body-Focus Filter Pills -->
         <div class="focus-filter-bar" role="region" aria-label="Filter studio sessions by body focus">
           <button type="button" class="focus-pill" data-focus="all" aria-pressed="true">All Studio Slots (12)</button>
+          <button type="button" class="focus-pill" data-focus="beginner" aria-pressed="false">Beginners Mat</button>
           <button type="button" class="focus-pill" data-focus="core" aria-pressed="false">Core &amp; Posture</button>
           <button type="button" class="focus-pill" data-focus="back4good" aria-pressed="false">Back4Good® Care</button>
           <button type="button" class="focus-pill" data-focus="reformer" aria-pressed="false">1:1 Reformer</button>
@@ -222,7 +251,7 @@
           </article>
 
           <!-- 3. Mon 18:15 Beginners -->
-          <article class="reel-card" data-focus-tags="core,back4good">
+          <article class="reel-card" data-focus-tags="beginner,core,back4good">
             <div class="reel-card-top">
               <span class="reel-day-chip">Monday · 18:15–19:15</span>
               <span class="reel-rate-chip">£9.00 / class</span>
@@ -360,7 +389,7 @@
           </article>
 
           <!-- 9. Wed 18:00 Beg/Imp -->
-          <article class="reel-card" data-focus-tags="core,back4good">
+          <article class="reel-card" data-focus-tags="beginner,core,back4good">
             <div class="reel-card-top">
               <span class="reel-day-chip">Wednesday · 18:00–19:00</span>
               <span class="reel-rate-chip">£9.00 / class</span>
@@ -454,54 +483,163 @@
       </div>
     </section>
 
-    <!-- Warm Vellum (#F3EEE5) Tactile Contrast Spread: 1:1 & Reformer Apparatus Studio -->
+    <!-- Warm Vellum (#F3EEE5) 4-Frame Sanctuary Lookbook + 1:1 & Reformer Apparatus Studio -->
     <section id="reformer-vellum" class="section-vellum" aria-labelledby="reformer-heading">
       <div class="container">
-        <div class="vellum-spread-grid">
-          <figure class="vellum-figure">
+        <div class="lookbook-header-bar">
+          <div>
+            <span class="eyebrow-tag eyebrow-dark">02 · Granary Sanctuary Lookbook &amp; Private Apparatus</span>
+            <h2 id="reformer-heading">Inside The Granary &amp; <em>1:1 Reformer (£40/hr)</em></h2>
+          </div>
+
+          <div class="lookbook-controls" aria-label="Sanctuary lookbook controls">
+            <span class="lookbook-counter-pill" id="lookbook-counter" aria-live="polite">01 / 04</span>
+            <button type="button" class="lookbook-arrow" id="lookbook-prev" aria-label="Previous lookbook frame">←</button>
+            <button type="button" class="lookbook-arrow" id="lookbook-next" aria-label="Next lookbook frame">→</button>
+          </div>
+        </div>
+
+        <div class="lookbook-snap-rail" id="lookbook-rail" tabindex="0" role="region" aria-label="4-frame Granary studio lookbook">
+          <!-- Frame 01: hero.jpg -->
+          <figure
+            class="lookbook-frame is-lightbox-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge Frame 01: Sunlit timber-beamed Granary mat loft"
+            data-lightbox-src="../images/hero.jpg"
+            data-lightbox-alt="Sunlit timber-beamed Granary Pilates loft with alignment mats and apparatus bathed in calm daylight"
+            data-lightbox-caption="01 / The Granary Loft — Sunlit timber-beamed studio sanctuary off 17A High Street, Yarm."
+            data-lightbox-cta="#sanctuary-booking"
+            data-lightbox-cta-label="Reserve £9/Class Mat Block"
+          >
             <span class="illustrative-badge badge-dark">Illustrative image</span>
+            <span class="lookbook-zoom-tag" aria-hidden="true">01 · Enlarge ⤢</span>
+            <img
+              src="../images/hero.jpg"
+              alt="Sunlit timber-beamed Granary Pilates loft with alignment mats and apparatus bathed in calm daylight"
+              width="1440"
+              height="803"
+              loading="lazy"
+            >
+            <figcaption>
+              <strong>01 / The Granary Loft</strong> — Sunlit timber-beamed mat sanctuary off 17A High Street (Illustrative image).
+            </figcaption>
+          </figure>
+
+          <!-- Frame 02: detail-2.jpg -->
+          <figure
+            class="lookbook-frame is-lightbox-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge Frame 02: Wide-plank oak floor with rolled linen mat, cork blocks and toning ball"
+            data-lightbox-src="../images/detail-2.jpg"
+            data-lightbox-alt="Serene wide-plank oak studio floor still-life with rolled linen mat, natural cork alignment blocks and soft toning ball"
+            data-lightbox-caption="02 / Matwork Craft — Rolled linen mat, cork alignment blocks & soft toning ball for £9.00/class half-term progression."
+            data-lightbox-cta="#sanctuary-booking"
+            data-lightbox-cta-label="Reserve £9/Class Mat Block"
+          >
+            <span class="illustrative-badge badge-dark">Illustrative image</span>
+            <span class="lookbook-zoom-tag" aria-hidden="true">02 · Enlarge ⤢</span>
+            <img
+              src="../images/detail-2.jpg"
+              alt="Serene wide-plank oak studio floor still-life with rolled linen mat, natural cork alignment blocks and soft toning ball"
+              width="1200"
+              height="896"
+              loading="lazy"
+            >
+            <figcaption>
+              <strong>02 / Matwork Still-Life</strong> — Wide-plank oak, rolled linen mat, cork blocks &amp; toning ball (Illustrative image).
+            </figcaption>
+          </figure>
+
+          <!-- Frame 03: detail-1.jpg -->
+          <figure
+            class="lookbook-frame is-lightbox-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge Frame 03: Sunlit maple-wood Pilates Reformer in converted brick-and-beam loft"
+            data-lightbox-src="../images/detail-1.jpg"
+            data-lightbox-alt="Sunlit maple-wood Pilates Reformer positioned inside a converted brick-and-beam Granary loft"
+            data-lightbox-caption="03 / Brick & Beam Apparatus — Maple-wood Reformer set in calm courtyard daylight at The Granary."
+            data-lightbox-cta="#sanctuary-booking"
+            data-lightbox-cta-label="Request 1:1 Reformer (£40/hr)"
+          >
+            <span class="illustrative-badge badge-dark">Illustrative image</span>
+            <span class="lookbook-zoom-tag" aria-hidden="true">03 · Enlarge ⤢</span>
+            <img
+              src="../images/detail-1.jpg"
+              alt="Sunlit maple-wood Pilates Reformer positioned inside a converted brick-and-beam Granary loft"
+              width="1200"
+              height="896"
+              loading="lazy"
+            >
+            <figcaption>
+              <strong>03 / Courtyard Apparatus</strong> — Maple-wood Pilates Reformer in converted brick-and-beam loft light (Illustrative image).
+            </figcaption>
+          </figure>
+
+          <!-- Frame 04: feature.jpg -->
+          <figure
+            class="lookbook-frame is-lightbox-trigger"
+            tabindex="0"
+            role="button"
+            aria-label="Enlarge Frame 04: Precision Reformer carriage, calibrated springs and footbar"
+            data-lightbox-src="../images/feature.jpg"
+            data-lightbox-alt="Precision Pilates Reformer carriage with springs, footbar and padded platform inside a sunlit timber studio"
+            data-lightbox-caption="04 / Calibrated Spring Tuition — 1:1 Reformer carriage & footbar precision at £40.00 per hour."
+            data-lightbox-cta="#sanctuary-booking"
+            data-lightbox-cta-label="Request 1:1 Reformer (£40/hr)"
+          >
+            <span class="illustrative-badge badge-dark">Illustrative image</span>
+            <span class="lookbook-zoom-tag" aria-hidden="true">04 · Enlarge ⤢</span>
             <img
               src="../images/feature.jpg"
               alt="Precision Pilates Reformer carriage with springs, footbar and padded platform inside a sunlit timber studio"
               width="1200"
               height="896"
+              loading="lazy"
             >
             <figcaption>
-              Illustrative image — Reformer apparatus concept visual for 1:1 tuition at The Granary.
+              <strong>04 / Calibrated Springs</strong> — Precision Reformer carriage &amp; footbar for £40.00/hr 1:1 tuition (Illustrative image).
             </figcaption>
           </figure>
+        </div>
 
-          <div class="vellum-copy-panel">
-            <span class="eyebrow-tag eyebrow-dark">02 · Private Apparatus Sanctuary</span>
-            <h2 id="reformer-heading">One-to-one &amp; <em>Reformer apparatus</em> at £40.00 / hr</h2>
-            <p>
-              Step onto the calibrated Reformer carriage for completely individualised spring resistance, postural assessment, or <strong>Back4Good®</strong> low-back support — either as an ongoing private practice or a calm orientation before joining a £9.00/class half-term mat block.
-            </p>
+        <div class="lookbook-dots" id="lookbook-dots" role="tablist" aria-label="Lookbook frame indicators">
+          <button type="button" class="lookbook-dot is-active" data-lookbook-index="0" aria-label="Go to frame 1 of 4" aria-selected="true"></button>
+          <button type="button" class="lookbook-dot" data-lookbook-index="1" aria-label="Go to frame 2 of 4" aria-selected="false"></button>
+          <button type="button" class="lookbook-dot" data-lookbook-index="2" aria-label="Go to frame 3 of 4" aria-selected="false"></button>
+          <button type="button" class="lookbook-dot" data-lookbook-index="3" aria-label="Go to frame 4 of 4" aria-selected="false"></button>
+        </div>
 
-            <div class="vellum-spec-cards">
-              <div class="vellum-spec-item">
-                <span class="spec-label">Published Monday Slots</span>
-                <strong>10:30–11:30 &amp; 11:45–12:45</strong>
-                <span class="spec-sub">Plus flexible windows: <span class="ph ph-light">[Additional 1:1 appointment times – owner to confirm]</span></span>
-              </div>
-              <div class="vellum-spec-item">
-                <span class="spec-label">Personal Block &amp; Tasters</span>
-                <strong>£40.00 per 60-minute session</strong>
-                <span class="spec-sub">5-session option: <span class="ph ph-light">[5-session rate – owner to confirm]</span> · <span class="ph ph-light">[Taster details – owner to confirm]</span></span>
-              </div>
+        <div class="vellum-copy-panel vellum-copy-wide">
+          <p>
+            Step onto the calibrated Reformer carriage for completely individualised spring resistance, postural assessment, or <strong>Back4Good®</strong> low-back support — either as an ongoing private practice or a calm orientation before joining a £9.00/class half-term mat block.
+          </p>
+
+          <div class="vellum-spec-cards">
+            <div class="vellum-spec-item">
+              <span class="spec-label">Published Monday Slots</span>
+              <strong>10:30–11:30 &amp; 11:45–12:45</strong>
+              <span class="spec-sub">Plus flexible windows: <span class="ph ph-light">[Additional 1:1 appointment times – owner to confirm]</span></span>
             </div>
-
-            <div class="hero-cta-row">
-              <button
-                type="button"
-                class="btn btn-eucalyptus-solid"
-                data-pick-slot="mon-1030-reformer"
-                data-pick-mode="reformer"
-              >
-                Request 1:1 / Reformer (£40/hr)
-              </button>
-              <a class="btn btn-outline-ink" href="tel:07702300960">Call 07702 300960</a>
+            <div class="vellum-spec-item">
+              <span class="spec-label">Personal Block &amp; Tasters</span>
+              <strong>£40.00 per 60-minute session</strong>
+              <span class="spec-sub">5-session option: <span class="ph ph-light">[5-session rate – owner to confirm]</span> · <span class="ph ph-light">[Taster details – owner to confirm]</span></span>
             </div>
+          </div>
+
+          <div class="hero-cta-row">
+            <button
+              type="button"
+              class="btn btn-eucalyptus-solid"
+              data-pick-slot="mon-1030-reformer"
+              data-pick-mode="reformer"
+            >
+              Request 1:1 / Reformer (£40/hr)
+            </button>
+            <a class="btn btn-outline-ink" href="tel:07702300960">Call 07702 300960</a>
           </div>
         </div>
       </div>
@@ -707,7 +845,25 @@
     </div>
   </footer>
 
-  <!-- Floating Sanctuary Pill Dock (Mobile/Tablet) -->
+  <div class="micro-toast" id="micro-toast" role="status" aria-live="polite" hidden></div>
+
+  <dialog class="sanctuary-lightbox" id="photo-lightbox" aria-label="Studio photograph viewer">
+    <div class="lightbox-card">
+      <div class="lightbox-topbar">
+        <span class="lightbox-ill-tag">Illustrative image</span>
+        <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close photograph viewer">✕ Close</button>
+      </div>
+      <div class="lightbox-stage">
+        <img id="lightbox-img" src="../images/hero.jpg" alt="" width="1200" height="896">
+      </div>
+      <div class="lightbox-meta">
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+        <a id="lightbox-cta" class="btn btn-terracotta btn-compact" href="#sanctuary-booking">Reserve Space</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Frosted Glass Safe-Area Floating Sanctuary Pill Dock (Mobile/Tablet) -->
   <nav class="floating-pill-dock" aria-label="Quick studio actions">
     <a class="dock-btn" href="tel:07702300960">Call</a>
     <a class="dock-btn" href="#movement-reel">Timetable</a>

@@ -1,6 +1,7 @@
 /* ==========================================================================
    The Pilates Studio Yarm — Client-Side Navigation, Sanctuary Pathway Guide,
-   URL-Aware Timetable Filter, Block Fee Calculator & Accessible Dummy Forms
+   1-Tap Practice Goal Presets, Native <dialog> Lightbox, Smart Dock Clearance,
+   URL-Aware Timetable Filter, Block Fee Calculator & Live Enquiry Ticket
    Zero external network calls · Keyboard accessible · Concept demonstration
    ========================================================================== */
 
@@ -8,6 +9,20 @@
   'use strict';
 
   var DEMO_SUBMIT_TEXT = 'Demo only \u2013 in the live site this would go straight to The Pilates Studio Yarm.';
+
+  /* 0. Non-Blocking Micro-Toast Helper */
+  var toastEl = document.getElementById('micro-toast');
+  var toastTimer = null;
+
+  function showMicroToast(message) {
+    if (!toastEl || !message) return;
+    if (toastTimer) window.clearTimeout(toastTimer);
+    toastEl.textContent = message;
+    toastEl.hidden = false;
+    toastTimer = window.setTimeout(function () {
+      toastEl.hidden = true;
+    }, 3400);
+  }
 
   /* 1. Keyboard-Accessible Mobile Index Navigation */
   var navToggle = document.querySelector('.nav-toggle');
@@ -63,11 +78,14 @@
 
   /* 2. Interactive "Which Practice Suits Your Body?" Sanctuary Guide (index.html) */
   var pathwayTabList = document.querySelector('.pathway-selector-grid[role="tablist"]');
+  var activatePathwayById = null;
+
   if (pathwayTabList) {
     var pathwayTabs = Array.prototype.slice.call(pathwayTabList.querySelectorAll('[role="tab"]'));
     var pathwayPanels = Array.prototype.slice.call(document.querySelectorAll('.pathway-panel[role="tabpanel"]'));
 
     function activatePathway(targetTab, moveFocus) {
+      if (!targetTab) return;
       var panelId = targetTab.getAttribute('aria-controls');
       pathwayTabs.forEach(function (tab) {
         var active = tab === targetTab;
@@ -81,6 +99,11 @@
         targetTab.focus();
       }
     }
+
+    activatePathwayById = function (tabId) {
+      var target = document.getElementById(tabId);
+      if (target) activatePathway(target, false);
+    };
 
     pathwayTabs.forEach(function (tab, idx) {
       tab.addEventListener('click', function () {
@@ -113,6 +136,7 @@
   var filterCountEl = document.getElementById('filter-count');
 
   function applyTimetableFilter(selectedFilter) {
+    if (!filterButtons.length) return;
     var visibleSlots = 0;
 
     filterButtons.forEach(function (b) {
@@ -167,6 +191,7 @@
   /* 4. Half-Term Block Calculator & Slot Pre-Selection */
   var bookingClassSelect = document.getElementById('booking-class');
   var bookingModeSelect = document.getElementById('booking-mode');
+  var bookingHealthInput = document.getElementById('booking-health');
   var calcWeeksSelect = document.getElementById('calc-weeks');
   var calcFigureEl = document.getElementById('calc-figure');
   var calcSubEl = document.getElementById('calc-sub');
@@ -177,6 +202,12 @@
     var weeks = calcWeeksSelect ? parseInt(calcWeeksSelect.value, 10) || 8 : 8;
     var ratePerClass = 9;
     var mode = bookingModeSelect ? bookingModeSelect.value : 'block';
+    var selectedClassVal = bookingClassSelect ? bookingClassSelect.value : '';
+
+    if (selectedClassVal.indexOf('reformer') !== -1 && bookingModeSelect && mode !== 'reformer') {
+      bookingModeSelect.value = 'reformer';
+      mode = 'reformer';
+    }
 
     if (calcSelectedSlotEl && bookingClassSelect) {
       var chosenOption = bookingClassSelect.options[bookingClassSelect.selectedIndex];
@@ -185,7 +216,10 @@
         : 'Select a weekly class slot';
     }
 
-    if (mode === 'waitlist') {
+    if (mode === 'reformer') {
+      calcFigureEl.textContent = '\u00A340.00 / hr';
+      calcSubEl.textContent = 'Private 60-minute 1:1 or Reformer studio tuition by appointment at The Granary (5-session block rate confirmed on enquiry).';
+    } else if (mode === 'waitlist') {
       calcFigureEl.textContent = '\u00A30.00 today';
       calcSubEl.textContent = 'Priority Waiting List \u2014 standard block rate (\u00A3' + (weeks * ratePerClass).toFixed(2) + ' for ' + weeks + ' weeks at \u00A39.00/class) only applies if a mat space opens.';
     } else {
@@ -217,6 +251,11 @@
       }
       updateBlockCalculator();
 
+      var chosenLabel = bookingClassSelect && bookingClassSelect.options[bookingClassSelect.selectedIndex]
+        ? bookingClassSelect.options[bookingClassSelect.selectedIndex].textContent.split('([')[0].trim()
+        : 'Granary slot';
+      showMicroToast('Selected: ' + chosenLabel + ' \u2014 pre-filled below.');
+
       if (formEl) {
         formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
         var nameInput = document.getElementById('booking-name');
@@ -232,6 +271,9 @@
   /* 5. 1:1 Reformer Quick-Select Buttons (reformer-tuition.html) */
   var reformerSlotButtons = document.querySelectorAll('[data-reformer-slot]');
   var reformerSlotSelect = document.getElementById('reformer-slot');
+  var reformerFocusSelect = document.getElementById('reformer-focus');
+  var reformerNotesInput = document.getElementById('reformer-notes');
+
   reformerSlotButtons.forEach(function (btn) {
     btn.addEventListener('click', function () {
       var slotVal = btn.getAttribute('data-reformer-slot');
@@ -239,6 +281,7 @@
       if (reformerSlotSelect && slotVal) {
         reformerSlotSelect.value = slotVal;
       }
+      showMicroToast('Monday ' + (slotVal === 'mon-1145' ? '11:45\u201312:45' : '10:30\u201311:30') + ' 1:1 slot pre-filled.');
       if (formSection) {
         formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         var nameInput = document.getElementById('reformer-name');
@@ -251,7 +294,227 @@
     });
   });
 
-  /* 6. Accessible Client-Side Dummy Form Validation & Submission */
+  /* 6. 1-Tap Practice Goal Presets (Sets A: index.html, timetable-booking.html, reformer-tuition.html) */
+  var GOAL_PRESETS = {
+    beginner: {
+      toast: 'Complete Beginner Mat preset applied \u2014 Mon 18:15 & Wed 18:00 (\u00A39/class block) highlighted.',
+      pathwayTab: 'ptab-gentle',
+      filter: 'all',
+      bookingClass: 'mon-1815-beginners',
+      bookingMode: 'block',
+      bookingNote: 'Goal: Complete Beginner Mat (\u00A39.00/class half-term block, Winter Term Mon 26 Oct \u2013 Fri 18 Dec 2026). New to Body Control Pilates\u00AE.',
+      reformerFocus: 'taster-orientation',
+      reformerSlot: 'mon-1030',
+      reformerNote: 'Goal: Complete Beginner orientation before joining a \u00A39.00/class Monday or Wednesday half-term mat block.'
+    },
+    back4good: {
+      toast: 'Back4Good\u00AE Low Back Care preset applied \u2014 back-friendly mat & 1:1 Granary sessions highlighted.',
+      pathwayTab: 'ptab-back',
+      filter: 'all',
+      bookingClass: 'wed-1800-begimp',
+      bookingMode: 'block',
+      bookingNote: 'Goal: Back4Good\u00AE low-back care, spinal mobility and posture support with pre-class health screening.',
+      reformerFocus: 'individual-mat',
+      reformerSlot: 'mon-1030',
+      reformerNote: 'Goal: Certified Back4Good\u00AE 1:1 spinal alignment & low-back assessment (\u00A340.00/hr).'
+    },
+    reformer: {
+      toast: '1:1 Private Reformer (\u00A340/hr) preset applied \u2014 Monday 10:30 & 11:45 apparatus slots highlighted.',
+      pathwayTab: 'ptab-gentle',
+      filter: 'all',
+      bookingClass: 'mon-1030-reformer',
+      bookingMode: 'reformer',
+      bookingNote: 'Goal: Private 1:1 Reformer apparatus session (\u00A340.00/hr by appointment at The Granary, 07702 300960).',
+      reformerFocus: 'reformer-single',
+      reformerSlot: 'mon-1030',
+      reformerNote: 'Goal: 1:1 Private Reformer session (\u00A340.00/hr) focusing on calibrated spring alignment and core precision.'
+    }
+  };
+
+  var presetButtons = document.querySelectorAll('.goal-preset-btn[data-goal-preset]');
+  var presetTaggedEls = document.querySelectorAll('[data-preset-tags]');
+  var homePresetCta = document.getElementById('home-preset-cta');
+
+  function applyGoalPreset(presetKey, silent) {
+    var cfg = GOAL_PRESETS[presetKey];
+    if (!cfg) return;
+
+    presetButtons.forEach(function (btn) {
+      btn.setAttribute('aria-pressed', btn.getAttribute('data-goal-preset') === presetKey ? 'true' : 'false');
+    });
+
+    if (filterButtons.length > 0) {
+      applyTimetableFilter(cfg.filter);
+    }
+
+    presetTaggedEls.forEach(function (el) {
+      var tags = (el.getAttribute('data-preset-tags') || '').split(',');
+      el.classList.toggle('is-preset-match', tags.indexOf(presetKey) !== -1);
+    });
+
+    if (activatePathwayById && cfg.pathwayTab) {
+      activatePathwayById(cfg.pathwayTab);
+    }
+
+    if (homePresetCta) {
+      homePresetCta.href = 'timetable-booking.html?preset=' + encodeURIComponent(presetKey) + '#booking-form';
+      homePresetCta.hidden = false;
+    }
+
+    if (bookingClassSelect && cfg.bookingClass) {
+      bookingClassSelect.value = cfg.bookingClass;
+    }
+    if (bookingModeSelect && cfg.bookingMode) {
+      bookingModeSelect.value = cfg.bookingMode;
+    }
+    if (bookingHealthInput && (!bookingHealthInput.value || bookingHealthInput.getAttribute('data-preset-filled') === 'true')) {
+      bookingHealthInput.value = cfg.bookingNote;
+      bookingHealthInput.setAttribute('data-preset-filled', 'true');
+    }
+    updateBlockCalculator();
+
+    if (reformerFocusSelect && cfg.reformerFocus) {
+      reformerFocusSelect.value = cfg.reformerFocus;
+    }
+    if (reformerSlotSelect && cfg.reformerSlot) {
+      reformerSlotSelect.value = cfg.reformerSlot;
+    }
+    if (reformerNotesInput && (!reformerNotesInput.value || reformerNotesInput.getAttribute('data-preset-filled') === 'true')) {
+      reformerNotesInput.value = cfg.reformerNote;
+      reformerNotesInput.setAttribute('data-preset-filled', 'true');
+    }
+
+    if (!silent) {
+      showMicroToast(cfg.toast);
+    }
+  }
+
+  if (bookingHealthInput) {
+    bookingHealthInput.addEventListener('input', function () {
+      bookingHealthInput.removeAttribute('data-preset-filled');
+    });
+  }
+  if (reformerNotesInput) {
+    reformerNotesInput.addEventListener('input', function () {
+      reformerNotesInput.removeAttribute('data-preset-filled');
+    });
+  }
+
+  presetButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var key = btn.getAttribute('data-goal-preset');
+      applyGoalPreset(key, false);
+    });
+  });
+
+  try {
+    var presetParams = new URLSearchParams(window.location.search);
+    var urlPreset = presetParams.get('preset');
+    if (urlPreset && GOAL_PRESETS[urlPreset]) {
+      applyGoalPreset(urlPreset, false);
+    }
+  } catch (err) {
+    /* Ignore URL parse errors */
+  }
+
+  /* 7. Native <dialog> Photo Lightbox */
+  var lightboxDialog = document.getElementById('photo-lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  var lightboxCaption = document.getElementById('lightbox-caption');
+  var lightboxCta = document.getElementById('lightbox-cta');
+  var lastLightboxTrigger = null;
+
+  function openLightbox(triggerEl) {
+    if (!lightboxDialog || !lightboxImg) return;
+    lastLightboxTrigger = triggerEl;
+    var src = triggerEl.getAttribute('data-lightbox-src');
+    var alt = triggerEl.getAttribute('data-lightbox-alt') || '';
+    var caption = triggerEl.getAttribute('data-lightbox-caption') || '';
+    var ctaHref = triggerEl.getAttribute('data-lightbox-cta') || '#booking-form';
+    var ctaLabel = triggerEl.getAttribute('data-lightbox-cta-label') || 'Reserve Session';
+
+    if (src) lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    if (lightboxCaption) lightboxCaption.textContent = caption;
+    if (lightboxCta) {
+      lightboxCta.href = ctaHref;
+      lightboxCta.textContent = ctaLabel;
+    }
+
+    if (typeof lightboxDialog.showModal === 'function') {
+      lightboxDialog.showModal();
+    } else {
+      lightboxDialog.setAttribute('open', '');
+    }
+  }
+
+  function closeLightbox() {
+    if (!lightboxDialog) return;
+    if (typeof lightboxDialog.close === 'function' && lightboxDialog.open) {
+      lightboxDialog.close();
+    } else {
+      lightboxDialog.removeAttribute('open');
+    }
+    if (lastLightboxTrigger && typeof lastLightboxTrigger.focus === 'function') {
+      lastLightboxTrigger.focus({ preventScroll: true });
+    }
+  }
+
+  if (lightboxDialog) {
+    document.querySelectorAll('.is-lightbox-trigger').forEach(function (trigger) {
+      trigger.addEventListener('click', function () {
+        openLightbox(trigger);
+      });
+      trigger.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openLightbox(trigger);
+        }
+      });
+    });
+
+    lightboxDialog.querySelectorAll('[data-lightbox-close]').forEach(function (btn) {
+      btn.addEventListener('click', closeLightbox);
+    });
+
+    lightboxDialog.addEventListener('click', function (event) {
+      if (event.target === lightboxDialog) {
+        closeLightbox();
+      }
+    });
+
+    if (lightboxCta) {
+      lightboxCta.addEventListener('click', function () {
+        var href = lightboxCta.getAttribute('href') || '';
+        if (href.charAt(0) === '#') {
+          closeLightbox();
+        }
+      });
+    }
+  }
+
+  /* 8. Smart Form & Footer Auto-Clearance for Floating Mobile Dock */
+  var mobileDock = document.querySelector('.mobile-action-bar');
+  if (mobileDock && 'IntersectionObserver' in window) {
+    var clearanceTargets = document.querySelectorAll('main form, footer.site-footer');
+    var activeZones = new Set();
+    var dockObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          activeZones.add(entry.target);
+        } else {
+          activeZones.delete(entry.target);
+        }
+      });
+      mobileDock.classList.toggle('is-dock-hidden', activeZones.size > 0);
+    }, { threshold: 0.08 });
+
+    clearanceTargets.forEach(function (target) {
+      dockObserver.observe(target);
+    });
+  }
+
+  /* 9. Accessible Form Validation + Live Digital Enquiry Ticket */
   function validateField(field) {
     var errorId = field.getAttribute('aria-describedby');
     var errorEl = errorId ? document.getElementById(errorId) : null;
@@ -300,6 +563,121 @@
     return valid;
   }
 
+  function getSelectedLabel(selectEl) {
+    if (!selectEl || !selectEl.options || selectEl.selectedIndex < 0) return '';
+    return selectEl.options[selectEl.selectedIndex].textContent.trim();
+  }
+
+  function buildReceiptTicket(form, confirmationBox) {
+    var nameField = form.querySelector('[name="full_name"]');
+    var phoneField = form.querySelector('[name="phone"]');
+    var emailField = form.querySelector('[name="email"]');
+    var classField = form.querySelector('[name="booking_class"], [name="session_focus"]');
+    var modeField = form.querySelector('[name="booking_mode"], [name="preferred_slot"]');
+    var notesField = form.querySelector('textarea');
+
+    var clientName = nameField ? nameField.value.trim() : 'Guest';
+    var contactStr = [
+      phoneField ? phoneField.value.trim() : '',
+      emailField ? emailField.value.trim() : ''
+    ].filter(Boolean).join(' \u00B7 ');
+    var sessionStr = classField ? getSelectedLabel(classField).split('([')[0].trim() : 'Granary Studio Session';
+    var windowStr = modeField ? getSelectedLabel(modeField) : 'Winter Term 2026 (Mon 26 Oct \u2013 Fri 18 Dec 2026)';
+    var notesStr = notesField && notesField.value.trim() ? notesField.value.trim() : 'Standard pre-class health screening';
+    var refCode = 'PSY-' + String(Math.floor(1000 + Math.random() * 9000));
+
+    var plainSummary = [
+      'The Pilates Studio Yarm \u2014 Enquiry Summary (' + refCode + ')',
+      'Client: ' + clientName,
+      'Contact: ' + contactStr,
+      'Selected Session: ' + sessionStr,
+      'Booking Window / Type: ' + windowStr,
+      'Notes: ' + notesStr
+    ].join('\n');
+
+    confirmationBox.textContent = '';
+
+    var verbatimP = document.createElement('p');
+    verbatimP.className = 'demo-verbatim-notice';
+    verbatimP.textContent = DEMO_SUBMIT_TEXT;
+    confirmationBox.appendChild(verbatimP);
+
+    var ticket = document.createElement('div');
+    ticket.className = 'owner-receipt-ticket';
+
+    var head = document.createElement('div');
+    head.className = 'ticket-head';
+    var titleSpan = document.createElement('span');
+    titleSpan.className = 'ticket-title';
+    titleSpan.textContent = 'What The Pilates Studio Yarm Receives';
+    var refSpan = document.createElement('span');
+    refSpan.className = 'ticket-ref';
+    refSpan.textContent = 'Ref: ' + refCode;
+    head.appendChild(titleSpan);
+    head.appendChild(refSpan);
+    ticket.appendChild(head);
+
+    var dl = document.createElement('dl');
+    dl.className = 'ticket-dl';
+    var rows = [
+      ['Client Name', clientName],
+      ['Direct Contact', contactStr],
+      ['Selected Class / Tuition', sessionStr],
+      ['Preferred Block / Window', windowStr],
+      ['Screening & Goal Notes', notesStr]
+    ];
+    rows.forEach(function (pair) {
+      var wrap = document.createElement('div');
+      var dt = document.createElement('dt');
+      dt.textContent = pair[0];
+      var dd = document.createElement('dd');
+      dd.textContent = pair[1];
+      wrap.appendChild(dt);
+      wrap.appendChild(dd);
+      dl.appendChild(wrap);
+    });
+    ticket.appendChild(dl);
+
+    var actions = document.createElement('div');
+    actions.className = 'ticket-actions';
+
+    var copyBtn = document.createElement('button');
+    copyBtn.type = 'button';
+    copyBtn.className = 'ticket-btn';
+    copyBtn.textContent = 'Copy Summary';
+    copyBtn.addEventListener('click', function () {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(plainSummary).then(function () {
+          copyBtn.textContent = 'Copied \u2713';
+          showMicroToast('Enquiry summary copied to clipboard.');
+          window.setTimeout(function () { copyBtn.textContent = 'Copy Summary'; }, 2200);
+        }).catch(function () {
+          showMicroToast('Summary ready: ' + refCode);
+        });
+      } else {
+        showMicroToast('Summary ready: ' + refCode);
+      }
+    });
+
+    var resetBtn = document.createElement('button');
+    resetBtn.type = 'button';
+    resetBtn.className = 'ticket-btn ticket-btn-secondary';
+    resetBtn.textContent = 'Reset Demo';
+    resetBtn.addEventListener('click', function () {
+      form.reset();
+      confirmationBox.hidden = true;
+      confirmationBox.textContent = '';
+      updateBlockCalculator();
+      showMicroToast('Demo form reset.');
+    });
+
+    actions.appendChild(copyBtn);
+    actions.appendChild(resetBtn);
+    ticket.appendChild(actions);
+
+    confirmationBox.appendChild(ticket);
+  }
+
   var demoForms = document.querySelectorAll('form[data-demo-form]');
   demoForms.forEach(function (form) {
     var fields = form.querySelectorAll('input, select, textarea');
@@ -334,7 +712,7 @@
       }
 
       if (confirmationBox) {
-        confirmationBox.textContent = DEMO_SUBMIT_TEXT;
+        buildReceiptTicket(form, confirmationBox);
         confirmationBox.hidden = false;
         confirmationBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
@@ -349,7 +727,7 @@
   function initGalleryPolish() {
     var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // 1. Subtle Top Header Reading-Progress Hairline
+    // 1. Subtle Top Header Reading-Progress Hairline (2.5px brand accent)
     var hdr = document.querySelector('header');
     if (hdr && !hdr.querySelector('.scroll-progress-rail')) {
       var cs = window.getComputedStyle(hdr);
@@ -376,9 +754,9 @@
       updateRail();
     }
 
-    // 2. Choreographed Below-the-Fold Scroll Reveals (Godly / SiteInspire)
+    // 2. Choreographed Below-the-Fold Scroll Reveals
     if (!reduced && 'IntersectionObserver' in window) {
-      var targets = document.querySelectorAll('.schedule-day-col, .tuition-card, .folio-panel, .apparatus-card, .faq-entry, .sanctuary-card');
+      var targets = document.querySelectorAll('.studio-card, .class-slot-card, .arch-photo-diptych .editorial-figure');
       var obs = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
@@ -392,7 +770,7 @@
       var staggerIdx = 0;
       targets.forEach(function (el) {
         var rect = el.getBoundingClientRect();
-        if (rect.top > vh * 0.94) {
+        if (rect.top > vh * 0.96) {
           el.style.setProperty('--reveal-delay', ((staggerIdx % 3) * 55) + 'ms');
           staggerIdx++;
           el.classList.add('reveal-ready');
@@ -400,7 +778,6 @@
         }
       });
 
-      // Safety fallback on hash jump so targeted sections reveal immediately
       window.addEventListener('hashchange', function () {
         document.querySelectorAll('.reveal-ready:not(.is-revealed)').forEach(function (el) {
           if (el.getBoundingClientRect().top < window.innerHeight * 1.1) {
@@ -410,88 +787,19 @@
       });
     }
 
-    // 3. Mobbin Smart Date Defaults + 1-Tap Quick Date Chips
-    function toIso(d) {
-      var m = String(d.getMonth() + 1).padStart(2, '0');
-      var day = String(d.getDate()).padStart(2, '0');
-      return d.getFullYear() + '-' + m + '-' + day;
-    }
-    function nextWeekday(base, targetDow) {
-      var diff = (targetDow - base.getDay() + 7) % 7;
-      if (diff === 0) diff = 7;
-      return new Date(base.getFullYear(), base.getMonth(), base.getDate() + diff);
-    }
-
-    var today = new Date();
-    var todayIso = toIso(today);
-    document.querySelectorAll('input[type="date"]').forEach(function (input) {
-      if (!input.min) {
-        input.min = todayIso;
-      }
-      var fieldWrap = input.parentElement;
-      if (!fieldWrap || fieldWrap.querySelector('[data-friday-chips]') || fieldWrap.querySelector('.quick-date-chips')) {
-        return;
-      }
-      var isReturn = input.id === 'return-date';
-      var chipRow = document.createElement('div');
-      chipRow.className = 'quick-date-chips';
-      chipRow.setAttribute('aria-label', 'Quick date options');
-
-      var presets = [];
-      if (isReturn) {
-        presets = [
-          { label: 'Same Day', calc: function () { var o = document.getElementById('outbound-date'); return (o && o.value) ? o.value : todayIso; } },
-          { label: '+2 Days', calc: function () {
-            var o = document.getElementById('outbound-date');
-            var base = (o && o.value) ? new Date(o.value + 'T12:00:00') : today;
-            return toIso(new Date(base.getFullYear(), base.getMonth(), base.getDate() + 2));
-          } }
-        ];
-      } else {
-        var tmrw = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
-        var fri = today.getDay() === 5 ? today : nextWeekday(today, 5);
-        var sat = today.getDay() === 6 ? today : nextWeekday(today, 6);
-        presets = [
-          { label: 'Tomorrow', iso: toIso(tmrw) },
-          { label: (today.getDay() === 5 ? 'Tonight (Fri)' : 'This Friday'), iso: toIso(fri) },
-          { label: (today.getDay() === 6 ? 'Today (Sat)' : 'This Saturday'), iso: toIso(sat) }
-        ];
-      }
-
-      presets.forEach(function (p) {
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'quick-date-chip';
-        btn.textContent = p.label;
-        btn.addEventListener('click', function () {
-          var val = p.calc ? p.calc() : p.iso;
-          input.value = val;
-          chipRow.querySelectorAll('.quick-date-chip').forEach(function (c) { c.classList.remove('is-selected'); });
-          btn.classList.add('is-selected');
-          input.dispatchEvent(new Event('change', { bubbles: true }));
-          input.dispatchEvent(new Event('input', { bubbles: true }));
-        });
-        chipRow.appendChild(btn);
-      });
-
-      input.insertAdjacentElement('afterend', chipRow);
-    });
-
-  // Live factual Winter Term week indicator (26 Oct 2026 - 18 Dec 2026)
-  (function () {
+    // 3. Live factual Winter Term week indicator (26 Oct 2026 - 18 Dec 2026)
     var bar = document.querySelector('.editorial-index-bar span:first-child');
-    if (!bar) return;
-    var now = new Date();
-    var start = new Date(2026, 9, 26); // 26 Oct 2026
-    var end = new Date(2026, 11, 18, 23, 59, 59); // 18 Dec 2026
-    if (now >= start && now <= end) {
-      var weekNum = Math.min(8, Math.max(1, Math.floor((now - start) / (7 * 86400000)) + 1));
-      if (bar.textContent.indexOf('Week ') === -1) {
-        bar.textContent = bar.textContent + ' · Week ' + weekNum + ' of 8';
+    if (bar) {
+      var now = new Date();
+      var start = new Date(2026, 9, 26);
+      var end = new Date(2026, 11, 18, 23, 59, 59);
+      if (now >= start && now <= end) {
+        var weekNum = Math.min(8, Math.max(1, Math.floor((now - start) / (7 * 86400000)) + 1));
+        if (bar.textContent.indexOf('Week ') === -1) {
+          bar.textContent = bar.textContent + ' \u00B7 Week ' + weekNum + ' of 8';
+        }
       }
     }
-  })();
-
   }
 
   if (document.readyState === 'loading') {
