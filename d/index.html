@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#FBFAF6">
+  <title>The Pilates Studio Yarm | Concept D — The Term Card (The Granary, 17A High Street)</title>
+  <meta name="description" content="Concept D for The Pilates Studio Yarm: the week at a glance on one quiet term card. Pick a class, see the block price and reserve a place or join the waiting list.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Persistent Top Concept Banner + [A] [B] [C] [D] Switcher -->
+  <div class="concept-banner" role="region" aria-label="Concept website notice">
+    <div class="concept-banner__inner">
+      <p>Concept design by Mark Aszkenasy – not the official website of The Pilates Studio Yarm.</p>
+      <nav class="concept-switcher" aria-label="Switch concept version">
+        <span class="concept-switcher__label">Concept:</span>
+        <a class="concept-switcher__pill" href="../index.html"><span>A</span></a>
+        <a class="concept-switcher__pill" href="../b/index.html"><span>B</span></a>
+        <a class="concept-switcher__pill" href="../c/index.html"><span>C</span></a>
+        <a class="concept-switcher__pill is-active" href="index.html" aria-current="page"><span>D</span></a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="site-head">
+    <div class="wrap site-head__inner">
+      <a class="brand" href="#top">
+        <img src="../images/logo-mark.svg" width="36" height="36" alt="">
+        <span>
+          <span class="brand__name">The Pilates Studio</span>
+          <span class="brand__meta">The Granary · Yarm</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Sections"><a href="#card">Term card</a><a href="#first">First visit</a><a href="#one">1:1 &amp; Reformer</a><a href="#find">Find us</a></nav>
+      <a class="btn btn--hi site-head__cta" href="#card">Choose a class</a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="intro" id="top" aria-labelledby="intro-title">
+      <div class="wrap intro__grid">
+        <div>
+          <p class="eyebrow">The Granary · 17A High Street · since 2010</p>
+          <h1 class="intro__title" id="intro-title">One room. Four days.<br><em>Your hour.</em></h1>
+          <p class="intro__lead">Small mat classes and one-to-one Reformer tuition above Yarm High Street. Body Control Pilates® and Back4Good® trained.</p>
+        </div>
+        <figure class="intro__photo">
+          <img src="../images/hero.jpg" width="1200" height="896" alt="Illustrative image of a daylit pilates studio with mats laid out">
+          <figcaption class="illus">Illustrative image – not the studio's own photography.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- The term card -->
+    <section class="sec card-sec" id="card" aria-labelledby="card-title">
+      <div class="wrap">
+        <div class="card">
+          <header class="card__head">
+            <div>
+              <p class="card__term">Winter Term 2026</p>
+              <h2 class="card__title" id="card-title">The week at a glance</h2>
+            </div>
+            <p class="card__dates">Mon 26 Oct – Fri 18 Dec<br><b>8 weeks · £72.00</b> <span>(£9.00 a class)</span></p>
+          </header>
+
+          <div class="chips chips--scroll card__filter" role="group" aria-label="Filter by level">
+            <button class="chip" aria-pressed="true" data-level="all">All</button>
+            <button class="chip" aria-pressed="false" data-level="beg">Beginners</button>
+            <button class="chip" aria-pressed="false" data-level="imp">Improvers</button>
+            <button class="chip" aria-pressed="false" data-level="fun">Functional</button>
+            <button class="chip" aria-pressed="false" data-level="pow">Power</button>
+            <button class="chip" aria-pressed="false" data-level="adv">Intermediate / Adv</button>
+          </div>
+
+          <div class="week" data-week></div>
+
+          <p class="card__key">
+            <span><i class="dot dot--on"></i><i class="dot dot--on"></i><i class="dot dot--on"></i> places left</span>
+            <span><i class="dot"></i><i class="dot"></i><i class="dot"></i> full, waiting list open</span>
+            <span class="ph">[Demo status – owner sets real availability]</span>
+          </p>
+          <p class="card__next"><span class="ph">[Next half-term dates – owner to confirm]</span></p>
+        </div>
+
+        <!-- Selection + request -->
+        <div class="reserve" id="reserve" data-reserve hidden>
+          <div class="reserve__summary" aria-live="polite">
+            <p class="eyebrow" data-r-mode>Reserve a place</p>
+            <h3 data-r-class></h3>
+            <p data-r-when></p>
+            <p class="reserve__price" data-r-price></p>
+          </div>
+          <form class="form" data-reserve-form novalidate>
+            <div class="form__row form__row--half">
+              <div><label for="r-name">Name</label><input id="r-name" name="name" type="text" autocomplete="name" required></div>
+              <div><label for="r-phone">Mobile</label><input id="r-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+            </div>
+            <div class="form__row">
+              <label for="r-note">Anything we should know? Injuries, pregnancy, new to Pilates</label>
+              <textarea id="r-note" name="note"></textarea>
+            </div>
+            <p class="form__error" data-r-error role="alert" hidden>Add your name and a mobile number.</p>
+            <button class="btn btn--ink btn--block" type="submit" data-r-btn>Request this place</button>
+            <p class="form__fine">Demo only. <span class="ph">[Payment method – owner to confirm]</span></p>
+            <div class="form__done" data-r-done role="status" hidden></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- First visit -->
+    <section class="sec first" id="first" aria-labelledby="first-title">
+      <div class="wrap">
+        <p class="eyebrow">New here</p>
+        <h2 class="section-title" id="first-title">Your first visit</h2>
+        <ol class="path">
+          <li><span class="path__n">i</span><div><h3>Tell us about your body</h3><p>A short health screening before you start, so the class suits you.</p></div></li>
+          <li><span class="path__n">ii</span><div><h3>Start in the right room</h3><p>Most people begin with <button class="link" type="button" data-pick="mon-1815">Beginners, Monday 18:15</button>. <span class="ph">[Taster details – owner to confirm]</span></p></div></li>
+          <li><span class="path__n">iii</span><div><h3>Find the door</h3><p>The Granary is at 17A High Street. <span class="ph">[Door &amp; stairs directions – owner to supply]</span></p></div></li>
+          <li><span class="path__n">iv</span><div><h3>Bring very little</h3><p><span class="ph">[What to wear &amp; bring – owner to confirm]</span></p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 1:1 & Reformer -->
+    <section class="sec one" id="one" aria-labelledby="one-title">
+      <div class="wrap one__grid">
+        <figure>
+          <img src="../images/feature.jpg" width="1200" height="896" alt="Illustrative image of a Reformer by a sash window" loading="lazy">
+          <figcaption class="illus">Illustrative image – not the studio's own photography.</figcaption>
+        </figure>
+        <div>
+          <p class="eyebrow">One to one</p>
+          <h2 class="section-title" id="one-title">Reformer &amp; individual tuition</h2>
+          <p class="one__price"><b>£40.00</b> per hour</p>
+          <ul class="one__slots">
+            <li><span>Monday</span><b>10:30–11:30</b></li>
+            <li><span>Monday</span><b>11:45–12:45</b></li>
+            <li><span class="ph">[Additional 1:1 appointment times – owner to confirm]</span></li>
+          </ul>
+          <p><span class="ph">[5-session rate – owner to confirm]</span></p>
+          <a class="btn btn--ghost" href="tel:07702300960">Call 07702 300960</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec find" id="find" aria-labelledby="find-title">
+      <div class="wrap">
+        <h2 class="section-title" id="find-title">A note from the studio</h2>
+        <blockquote class="note"><span class="ph">[A few lines in the teacher's own words – owner to supply]</span></blockquote>
+        <address>The Granary, 17A High Street, Yarm TS15 9BW · <a href="tel:07702300960">07702 300960</a> · <span class="ph">[Email – owner to confirm]</span></address>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <p class="foot__links">
+        <a href="../index.html">Concept A</a>
+        <a href="../b/index.html">Concept B</a>
+        <a href="../c/index.html">Concept C</a>
+        <a href="index.html" aria-current="page">Concept D</a>
+      </p>
+      <p><strong>Concept disclaimer:</strong> Concept design by Mark Aszkenasy – not the official website of The Pilates Studio Yarm. All bracketed items are placeholders awaiting owner confirmation. Class availability dots are illustrative demo status. No forms transmit data and no cookies are set.</p>
+      <p><strong>Illustrative image credit:</strong> Photographs shown on this concept page are AI-generated illustrative images used solely to demonstrate visual layout and do not depict the actual business, its work, products or premises.</p>
+    </div>
+  </footer>
+
+  <nav class="dock" aria-label="Quick actions"><a href="tel:07702300960">Call</a><a href="#first">First visit</a><a class="dock__primary" href="#card">Choose a class</a></nav>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
