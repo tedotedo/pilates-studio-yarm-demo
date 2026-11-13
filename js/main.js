@@ -341,3 +341,162 @@
     });
   });
 })();
+
+// === Gallery Inspiration Polish (Awwwards / Godly / Mobbin) ===
+(function () {
+  'use strict';
+
+  function initGalleryPolish() {
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // 1. Subtle Top Header Reading-Progress Hairline
+    var hdr = document.querySelector('header');
+    if (hdr && !hdr.querySelector('.scroll-progress-rail')) {
+      var cs = window.getComputedStyle(hdr);
+      if (cs.position === 'static') {
+        hdr.style.position = 'relative';
+      }
+      var rail = document.createElement('div');
+      rail.className = 'scroll-progress-rail';
+      rail.setAttribute('aria-hidden', 'true');
+      hdr.appendChild(rail);
+      var ticking = false;
+      var updateRail = function () {
+        var docH = document.documentElement.scrollHeight - window.innerHeight;
+        var ratio = docH > 40 ? Math.min(1, Math.max(0, window.scrollY / docH)) : 0;
+        rail.style.transform = 'scaleX(' + ratio.toFixed(4) + ')';
+        ticking = false;
+      };
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          ticking = true;
+          window.requestAnimationFrame(updateRail);
+        }
+      }, { passive: true });
+      updateRail();
+    }
+
+    // 2. Choreographed Below-the-Fold Scroll Reveals (Godly / SiteInspire)
+    if (!reduced && 'IntersectionObserver' in window) {
+      var targets = document.querySelectorAll('.schedule-day-col, .tuition-card, .folio-panel, .apparatus-card, .faq-entry, .sanctuary-card');
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
+
+      var vh = window.innerHeight || 800;
+      var staggerIdx = 0;
+      targets.forEach(function (el) {
+        var rect = el.getBoundingClientRect();
+        if (rect.top > vh * 0.94) {
+          el.style.setProperty('--reveal-delay', ((staggerIdx % 3) * 55) + 'ms');
+          staggerIdx++;
+          el.classList.add('reveal-ready');
+          obs.observe(el);
+        }
+      });
+
+      // Safety fallback on hash jump so targeted sections reveal immediately
+      window.addEventListener('hashchange', function () {
+        document.querySelectorAll('.reveal-ready:not(.is-revealed)').forEach(function (el) {
+          if (el.getBoundingClientRect().top < window.innerHeight * 1.1) {
+            el.classList.add('is-revealed');
+          }
+        });
+      });
+    }
+
+    // 3. Mobbin Smart Date Defaults + 1-Tap Quick Date Chips
+    function toIso(d) {
+      var m = String(d.getMonth() + 1).padStart(2, '0');
+      var day = String(d.getDate()).padStart(2, '0');
+      return d.getFullYear() + '-' + m + '-' + day;
+    }
+    function nextWeekday(base, targetDow) {
+      var diff = (targetDow - base.getDay() + 7) % 7;
+      if (diff === 0) diff = 7;
+      return new Date(base.getFullYear(), base.getMonth(), base.getDate() + diff);
+    }
+
+    var today = new Date();
+    var todayIso = toIso(today);
+    document.querySelectorAll('input[type="date"]').forEach(function (input) {
+      if (!input.min) {
+        input.min = todayIso;
+      }
+      var fieldWrap = input.parentElement;
+      if (!fieldWrap || fieldWrap.querySelector('[data-friday-chips]') || fieldWrap.querySelector('.quick-date-chips')) {
+        return;
+      }
+      var isReturn = input.id === 'return-date';
+      var chipRow = document.createElement('div');
+      chipRow.className = 'quick-date-chips';
+      chipRow.setAttribute('aria-label', 'Quick date options');
+
+      var presets = [];
+      if (isReturn) {
+        presets = [
+          { label: 'Same Day', calc: function () { var o = document.getElementById('outbound-date'); return (o && o.value) ? o.value : todayIso; } },
+          { label: '+2 Days', calc: function () {
+            var o = document.getElementById('outbound-date');
+            var base = (o && o.value) ? new Date(o.value + 'T12:00:00') : today;
+            return toIso(new Date(base.getFullYear(), base.getMonth(), base.getDate() + 2));
+          } }
+        ];
+      } else {
+        var tmrw = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+        var fri = today.getDay() === 5 ? today : nextWeekday(today, 5);
+        var sat = today.getDay() === 6 ? today : nextWeekday(today, 6);
+        presets = [
+          { label: 'Tomorrow', iso: toIso(tmrw) },
+          { label: (today.getDay() === 5 ? 'Tonight (Fri)' : 'This Friday'), iso: toIso(fri) },
+          { label: (today.getDay() === 6 ? 'Today (Sat)' : 'This Saturday'), iso: toIso(sat) }
+        ];
+      }
+
+      presets.forEach(function (p) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'quick-date-chip';
+        btn.textContent = p.label;
+        btn.addEventListener('click', function () {
+          var val = p.calc ? p.calc() : p.iso;
+          input.value = val;
+          chipRow.querySelectorAll('.quick-date-chip').forEach(function (c) { c.classList.remove('is-selected'); });
+          btn.classList.add('is-selected');
+          input.dispatchEvent(new Event('change', { bubbles: true }));
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+        });
+        chipRow.appendChild(btn);
+      });
+
+      input.insertAdjacentElement('afterend', chipRow);
+    });
+
+  // Live factual Winter Term week indicator (26 Oct 2026 - 18 Dec 2026)
+  (function () {
+    var bar = document.querySelector('.editorial-index-bar span:first-child');
+    if (!bar) return;
+    var now = new Date();
+    var start = new Date(2026, 9, 26); // 26 Oct 2026
+    var end = new Date(2026, 11, 18, 23, 59, 59); // 18 Dec 2026
+    if (now >= start && now <= end) {
+      var weekNum = Math.min(8, Math.max(1, Math.floor((now - start) / (7 * 86400000)) + 1));
+      if (bar.textContent.indexOf('Week ') === -1) {
+        bar.textContent = bar.textContent + ' · Week ' + weekNum + ' of 8';
+      }
+    }
+  })();
+
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGalleryPolish);
+  } else {
+    initGalleryPolish();
+  }
+})();
