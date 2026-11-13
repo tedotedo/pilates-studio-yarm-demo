@@ -2018,3 +2018,29 @@ p {
     min-height: 40px;
   }
 }
+
+/* === Android Chrome / Samsung Internet & 360px Polish === */
+a, button, summary, label, input, select {
+  -webkit-tap-highlight-color: transparent;
+}
+@media (max-width: 389px) {
+  .brand-link {
+    gap: 0.5rem;
+  }
+  .brand-mark {
+    width: 2.05rem;
+    height: 2.05rem;
+  }
+  .brand-name {
+    font-size: 0.9rem;
+  }
+  .brand-sub-mobile {
+    font-size: 0.58rem;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .nav-toggle {
+    padding: 0.4rem 0.62rem;
+    font-size: 0.72rem;
+  }
+}
