@@ -597,6 +597,15 @@ p {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     border-bottom: 1.5px solid transparent;
+    white-space: nowrap;
+  }
+
+  .brand-name {
+    white-space: nowrap;
+  }
+
+  .masthead-contact-cell .btn {
+    white-space: nowrap;
   }
 
   .nav-link[aria-current="page"] {
@@ -622,6 +631,37 @@ p {
 
   .masthead-tel:hover {
     color: var(--terracotta-ink);
+  }
+}
+
+@media (min-width: 980px) and (max-width: 1279px) {
+  .masthead-grid {
+    grid-template-columns: auto 1fr auto;
+  }
+  .masthead-coords-cell {
+    display: none;
+  }
+  .brand-sub-mobile {
+    display: block;
+    white-space: nowrap;
+  }
+  .masthead-brand-cell {
+    padding: 0.55rem 1rem 0.55rem 0;
+  }
+  .nav-list {
+    gap: 1.1rem;
+  }
+  .nav-link {
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+  }
+  .masthead-contact-cell {
+    gap: 0.75rem;
+    padding: 0.55rem 0 0.55rem 1rem;
+  }
+  .masthead-contact-cell .btn {
+    padding: 0.58rem 0.95rem;
+    font-size: 0.78rem;
   }
 }
 
